@@ -7,6 +7,9 @@ import Lien2 from '../Screen/Lien2';
 import Lien3 from '../Screen/Lien3';
 import Lien4 from '../Screen/Lien4';
 import Lien5 from '../Screen/Lien5';
+import CameraScreen from '../Screen/CameraScreen';
+
+
 var BottomNavigator = createBottomTabNavigator(
  {
   Home: Home,
@@ -58,6 +61,12 @@ var StackNavigator = createStackNavigator({
   },
   Lien5:  {
     screen: Lien5,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  CameraScreen:{
+    screen: CameraScreen,
     navigationOptions: () => ({
       header: null
     })

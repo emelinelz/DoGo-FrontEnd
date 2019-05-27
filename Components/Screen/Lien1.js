@@ -24,7 +24,13 @@ export default class Lien1 extends React.Component {
                onPress={ () => this.props.navigation.navigate('Lien2')}
                title="Next"
                color="black"
-             />
+      />
+      <Button
+                   style={{height: 30,width: 100, backgroundColor:'black', color:'white', justifyContent:'center',aligntext:'center'}}
+                   onPress={ () => this.props.navigation.navigate('CameraScreen')}
+                   title="Camera"
+                   color="black"
+       />
       </View>
      </ImageBackground>    );
  }
