@@ -7,9 +7,6 @@ import {Button,Icon,Text,Footer} from 'native-base'
 
 export default class List extends React.Component {
 
-
-  
-
   render() {
 
     var promenadeBD=[
