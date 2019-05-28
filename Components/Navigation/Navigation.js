@@ -52,16 +52,21 @@ var StackNavigator = createStackNavigator({
       title: "Concept"
     })
   },
+<<<<<<< HEAD
   ListScreen:{
     screen: ListScreen,
+=======
+  List:{
+    screen: List,
+>>>>>>> 0aaf58876018a3e51a780418fc5ae9991ed7fc92
     navigationOptions: () => ({
-      header: null
+      title: 'List de promenades'
     })
   },
-  Lien3:  {
-    screen: Lien3,
+  AddPromenade:  {
+    screen: AddPromenade,
     navigationOptions: () => ({
-      header: null
+      title: 'Proposer un promenade'
     })
   },
   Lien4:{
@@ -72,6 +77,12 @@ var StackNavigator = createStackNavigator({
   },
   Lien5:  {
     screen: Lien5,
+    navigationOptions: () => ({
+      header: null
+    })
+  },
+  CameraScreen:{
+    screen: CameraScreen,
     navigationOptions: () => ({
       header: null
     })
