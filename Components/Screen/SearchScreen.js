@@ -5,7 +5,7 @@ import { ImageBackground, AppRegistry, View,Button} from 'react-native';
 
 
 
-export default class Lien1 extends React.Component {
+export default class SearchScreen extends React.Component {
 
 
  render() {
