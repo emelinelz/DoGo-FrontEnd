@@ -97,43 +97,10 @@ constructor(){
          </View>
 
 
-<<<<<<< HEAD
- render() {
-   return (
-     <ImageBackground style={{flex:1}} source={require("../../assets/Images/paw2.jpg")}>
-      <View style={{
-       flex: 1,
-       flexDirection: 'column',
-       justifyContent: 'flex-end',
-       alignItems: 'stretch',
-      }}>
 
-
-      <Button
-               style={{height: 30,width: 100, backgroundColor:'black', color:'white', justifyContent:'center',aligntext:'center'}}
-               onPress={ () => this.props.navigation.navigate('Lien2')}
-               title="Next"
-               color="black"
-      />
-      <Button
-                   style={{height: 30,width: 100, backgroundColor:'black', color:'white', justifyContent:'center',aligntext:'center'}}
-                   onPress={ () => this.props.navigation.navigate('CameraScreen')}
-                   title="Camera"
-                   color="black"
-       />
-      </View>
-     </ImageBackground>    );
- }
-=======
-         <Text>
-           Date: {this.state.chosenDate.toString().substr(4, 12)}
-         </Text>
-
-     </View>
 
 
 
      );
 }
->>>>>>> map
 }
