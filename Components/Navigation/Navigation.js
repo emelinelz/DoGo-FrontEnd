@@ -3,8 +3,8 @@ import {createBottomTabNavigator, createAppContainer, createStackNavigator} from
 
 import Home from '../Screen/Home';
 import Lien1 from '../Screen/Lien1';
-import Lien2 from '../Screen/Lien2';
-import Lien3 from '../Screen/Lien3';
+import List from '../Screen/List';
+import AddPromenade from '../Screen/AddPromenade';
 import Lien4 from '../Screen/Lien4';
 import Lien5 from '../Screen/Lien5';
 var BottomNavigator = createBottomTabNavigator(
@@ -38,16 +38,16 @@ var StackNavigator = createStackNavigator({
       title: "Concept"
     })
   },
-  Lien2:{
-    screen: Lien2,
+  List:{
+    screen: List,
     navigationOptions: () => ({
-      header: null
+      title: 'List de promenades'
     })
   },
-  Lien3:  {
-    screen: Lien3,
+  AddPromenade:  {
+    screen: AddPromenade,
     navigationOptions: () => ({
-      header: null
+      title: 'Proposer un promenade'
     })
   },
   Lien4:{
