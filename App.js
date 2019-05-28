@@ -1,9 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import {Button, FormLabel, FormInput} from 'react-native-elements';
+import {FormLabel, FormInput} from 'react-native-elements';
 import Navigation from './Components/Navigation/Navigation';
-
-
+import { Container, Header, Content, Button, Icon, Item, Input, Footer, DatePicker} from 'native-base';
+import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
+import { Location, Permissions } from 'expo';
 
 
 // In App.js, I just need to return my Navigation component. It is inside this component, that my components are rendered.
