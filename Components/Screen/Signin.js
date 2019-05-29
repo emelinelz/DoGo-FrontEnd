@@ -6,7 +6,7 @@ import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, T
 
 
 
-export default class Lien5 extends React.Component {
+export default class Signin extends React.Component {
 
   render() {
     return (

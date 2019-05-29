@@ -65,7 +65,7 @@ constructor(){
            </TouchableOpacity>
          </View>
 
-         <Button full primary onPress={ () => this.props.navigation.navigate('List')}>
+         <Button full primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
             <Icon name='paw'/>
             <Text>Cherche</Text>
           </Button>

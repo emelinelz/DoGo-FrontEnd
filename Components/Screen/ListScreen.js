@@ -1,11 +1,10 @@
 import React from 'react';
 import { ImageBackground, AppRegistry, View} from 'react-native';
-import Promenade from './Promenade/Promenade';
+import Promenade from '../Promenade/Promenade';
 import {Button,Icon,Text,Footer} from 'native-base'
 
 
-
-export default class List extends React.Component {
+export default class ListScreen extends React.Component {
 
   render() {
 
@@ -54,7 +53,10 @@ export default class List extends React.Component {
       {promenade}
         
        
-        
+      <Button full bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
+            <Icon name='camera'/>
+            <Text>Prendre photo</Text>
+          </Button>
      
        </View>
 <Footer>

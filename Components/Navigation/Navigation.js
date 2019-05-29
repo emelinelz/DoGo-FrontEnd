@@ -5,9 +5,9 @@ import Home from '../Screen/Home';
 import SearchScreen from '../Screen/SearchScreen';
 import AddPromenade from '../Screen/AddPromenade';
 import CameraScreen from '../Screen/CameraScreen';
-import List from '../Screen/List';
+import ListScreen from '../Screen/ListScreen';
 import Lien4 from '../Screen/Lien4';
-import Lien5 from '../Screen/Lien5';
+import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
 import {Icon } from 'native-base';
 
@@ -54,8 +54,8 @@ var StackNavigator = createStackNavigator({
     })
   },
 
-  List:{
-    screen: List,
+  ListScreen:{
+    screen: ListScreen,
     navigationOptions: () => ({
       title: 'List de promenades'
     })
@@ -72,8 +72,8 @@ var StackNavigator = createStackNavigator({
       header: null
     })
   },
-  Lien5:  {
-    screen: Lien5,
+  Signin:  {
+    screen: Signin,
     navigationOptions: () => ({
       header: null
     })
