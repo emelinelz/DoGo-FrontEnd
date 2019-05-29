@@ -20,10 +20,10 @@ var MainNavigator = createBottomTabNavigator(
       defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, tintColor }) =>{
           if (navigation.state.routeName == 'Ajouter une promenade'){
-            return <Icon type="Ionicons" name="add-circle" />
+            return <Icon  name="add-circle" />
           }
           else if (navigation.state.routeName == 'Trouver une promenade'){
-            return <Icon type="Ionicons" name="locate" />
+            return <Icon name="locate" />
           }
         }
       }),

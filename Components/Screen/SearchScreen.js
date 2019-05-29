@@ -6,17 +6,19 @@ import { Location, Permissions } from 'expo';
 import { Container, Header, Content, Button, Icon, Item, Input, Footer, DatePicker} from 'native-base';
 
 
-export default class Lien1 extends React.Component {
+export default class SearchScreen extends React.Component {
 
 constructor(){
   super();
   this.state = {currentPosition:{latitude:0,longitude:0},logPosition:[] }
   this.state = { chosenDate: new Date() };
   this.setDate = this.setDate.bind(this);
+  
 }
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
 }
+
 
  render(){
 
@@ -37,11 +39,11 @@ constructor(){
               description="You are here !"
             />
             <Header searchBar rounded>
-             <Item>
-                <Icon name="ios-search" />
+             {/* <Item>
+                <Icon name="search" />
                  <Input placeholder="Autour de moi" />
-                <Icon name="ios-people" />
-             </Item>
+                <Icon name="paw" />
+             </Item> */}
            </Header>
          </MapView>
         <DatePicker
@@ -69,7 +71,7 @@ constructor(){
             <Icon name='paw'/>
             <Text>Cherche</Text>
           </Button>
-         </View>
+      </View>
 
 
      );

@@ -108,7 +108,7 @@ export default class AddPromenade extends Component {
 
         <Footer>
           <FooterTab>
-          <Button transparent primary onPress={ () => this.props.navigation.navigate('List')}>
+          <Button transparent primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
             <Icon name='paw'/>
             <Text>Valider</Text>
           </Button>
