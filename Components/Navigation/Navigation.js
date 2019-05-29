@@ -3,8 +3,9 @@ import {createBottomTabNavigator, createAppContainer, createStackNavigator} from
 import {Platform} from 'react-native'
 import Home from '../Screen/Home';
 import SearchScreen from '../Screen/SearchScreen';
-import ListScreen from '../Screen/ListScreen';
-import Lien3 from '../Screen/Lien3';
+import AddPromenade from '../Screen/AddPromenade';
+import CameraScreen from '../Screen/CameraScreen';
+import List from '../Screen/List';
 import Lien4 from '../Screen/Lien4';
 import Lien5 from '../Screen/Lien5';
 import { Ionicons } from '@expo/vector-icons';
@@ -52,13 +53,9 @@ var StackNavigator = createStackNavigator({
       title: "Concept"
     })
   },
-<<<<<<< HEAD
-  ListScreen:{
-    screen: ListScreen,
-=======
+
   List:{
     screen: List,
->>>>>>> 0aaf58876018a3e51a780418fc5ae9991ed7fc92
     navigationOptions: () => ({
       title: 'List de promenades'
     })
