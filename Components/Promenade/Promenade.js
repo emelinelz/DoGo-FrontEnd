@@ -71,6 +71,10 @@ export default class Promenade extends React.Component{
             <Icon name='paw'/>
             <Text>Joint</Text>
           </Button>
+          <Button full bordered primary onPress={ () => this.props.navigation.navigate('Camera')}>
+            <Icon name='camera'/>
+            <Text>Prendre photo</Text>
+          </Button>
 
           
 

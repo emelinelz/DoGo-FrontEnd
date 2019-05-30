@@ -6,17 +6,19 @@ import { Location, Permissions } from 'expo';
 import { Container, Header, Content, Button, Icon, Item, Input, Footer, DatePicker} from 'native-base';
 
 
-export default class Lien1 extends React.Component {
+export default class SearchScreen extends React.Component {
 
 constructor(){
   super();
   this.state = {currentPosition:{latitude:0,longitude:0},logPosition:[],duree:1}
   this.state = { chosenDate: new Date() };
   this.setDate = this.setDate.bind(this);
+
 }
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
 }
+
 
  render(){
 
