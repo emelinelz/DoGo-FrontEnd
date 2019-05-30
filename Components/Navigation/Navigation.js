@@ -6,13 +6,14 @@ import SearchScreen from '../Screen/SearchScreen';
 import AddPromenade from '../Screen/AddPromenade';
 import CameraScreen from '../Screen/CameraScreen';
 import ListScreen from '../Screen/ListScreen';
-import Lien4 from '../Screen/Lien4';
+import Signup from '../Screen/Signup';
 import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
 import {Icon } from 'native-base';
 
 var MainNavigator = createBottomTabNavigator(
-  {
+  
+  { 
     'Ajouter une promenade': Home,
     'Trouver une promenade':SearchScreen
   },
@@ -47,10 +48,13 @@ var StackNavigator = createStackNavigator({
 
     })
   },
+  MainNavigator:{
+    screen: MainNavigator
+  },
   SearchScreen:{
     screen: SearchScreen,
     navigationOptions: () => ({
-      title: "Concept"
+      title: "Chercher un promenade"
     })
   },
 
@@ -66,16 +70,16 @@ var StackNavigator = createStackNavigator({
       title: 'Proposer un promenade'
     })
   },
-  Lien4:{
-    screen: Lien4,
+  Signup:{
+    screen: Signup,
     navigationOptions: () => ({
-      header: null
+      title: 'Sign up'
     })
   },
   Signin:  {
     screen: Signin,
     navigationOptions: () => ({
-      header: null
+      title: 'Sign in'
     })
   },
   CameraScreen:{

@@ -1,7 +1,10 @@
 import React from 'react';
+import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
+
 import {bottomDivider,Image,ListItem,Avatar,containerStyle,Badge,Text} from 'react-native-elements';
 import {Modal,View,ImageBackground,StyleSheet} from 'react-native';
-import {Button,Icon} from 'native-base'
+import { Card, Header,CardItem, Thumbnail, Left, Body, Right,Button,Icon} from 'native-base'
 
 
 
@@ -28,7 +31,46 @@ export default class Promenade extends React.Component{
     return(
 
     <View>
-      <ListItem
+      <Card>
+            <CardItem >
+              <Left>
+                <Thumbnail square large source={{uri: this.props.img}} />
+               
+              </Left>
+             <Body>
+             <Text>{this.props.username}</Text>
+                  <Text note>GeekyAnts</Text>
+             <Text>{this.props.adress}</Text>
+              </Body>
+              <Right>
+              <Button large transparent onPress={this.setModalVisible}>
+              <Icon name="arrow-forward" />
+              <Text> Voir </Text></Button>
+              </Right>
+            </CardItem>
+        
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="calendar" />
+                  <Text>{this.props.date}</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="people" />
+                  <Text>4 participants</Text>
+                </Button>
+              </Body>
+              <Right>
+              <Button transparent>
+                  <Icon active name="navigate" />
+                  <Text>0.5km</Text>
+                </Button>
+              </Right>
+            </CardItem>
+          </Card>
+      {/* <ListItem
       bottomDivider={true}
       onPress={this.setModalVisible}
       leftAvatar={{ source: { uri: this.props.img } }}
@@ -49,16 +91,89 @@ export default class Promenade extends React.Component{
             </View>
 
           }
-          />
+          /> */}
+
+
+
 
       <View>
+
           <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={false}
                 visible={this.state.modalVisible}
-                presentationStyle='pageSheet'
+                presentationStyle='formSheet'
             >
-        <View style={{flex:1}}>
+        
+<Card style={{flex: 1, marginTop:100,marginHorizontal:20}}>
+
+            <CardItem>
+              <Left>
+              <Thumbnail square large source={{uri: this.props.img}} />
+                <Body>
+                  <Text>NativeBase</Text>
+                  <Text note>April 15, 2016</Text>
+                </Body>
+              </Left>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Text>
+                  blablal blablal blablal blablal
+                </Text>
+              </Body>
+            </CardItem>
+            <MapView mapType = "standard"
+        style={{flex : 0.5}}
+        initialRegion=
+        {{
+          latitude: 48.8534,
+          longitude: 2.3488,
+          latitudeDelta: 0.0922,
+          longitudeDelta: 0.0421,
+        }}
+      >
+            <Marker coordinate={{latitude: 48.8534, longitude: 2.3488}}
+            />
+          
+         </MapView>
+         <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="calendar" />
+                  <Text>{this.props.date}</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="people" />
+                  <Text>4 participants</Text>
+                </Button>
+              </Body>
+              <Right>
+              <Button transparent>
+                  <Icon active name="navigate" />
+                  <Text>0.5km</Text>
+                </Button>
+              </Right>
+            </CardItem>
+
+<CardItem>
+  <Body>
+            <Button full bordered primary onPress={this.setModalInvisible}>
+<Icon name='arrow-back' />
+         <Text> Go Back</Text>
+       </Button>
+      
+       <Button full bordered primary onPress={this.setModalInvisible}>
+<Icon name='arrow-forward' />
+         <Text> I Joint</Text>
+       </Button>
+       </Body>
+       </CardItem>
+          </Card>
+
+        {/* <View style={{flex:1}}>
           <Image style={{ width: 500, height: 400 }} source={{uri:this.props.img}}/>
 
 
@@ -88,7 +203,7 @@ export default class Promenade extends React.Component{
           </View>
 
 
-          </View>
+          </View> */}
 
 
        

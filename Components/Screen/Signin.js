@@ -3,9 +3,6 @@ import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, T
   Alert, KeyboardAvoidingView, StyleSheet} from 'react-native';
 
 
-
-
-
 export default class Signin extends React.Component {
 
   render() {
@@ -15,20 +12,27 @@ export default class Signin extends React.Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
-          <Text style={styles.logoText}>Caps</Text>
+          <Text style={styles.logoText}>Sign in</Text>
             <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
             <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
             <Button
               buttonStyle={styles.loginButton}
-              onPress={() => this.onLoginPress()}
+              onPress={() => this.props.navigation.navigate('AddPromenade')}
               title="Login"
             />
-            <Button
+              <Button
               buttonStyle={styles.fbLoginButton}
               onPress={() => this.onFbLoginPress()}
               title="Login with Facebook"
               color="#3897f1"
             />
+            <Button
+              buttonStyle={styles.fbLoginButton}
+              onPress={() => this.props.navigation.navigate('Signup')}
+              title="Pas de compte? Sign up"
+              color="#3897f1"
+            />
+          
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -69,7 +73,7 @@ const styles=  StyleSheet.create({
       flex: 1,
       },
       logoText: {
-      fontSize: 40,
+      fontSize: 30,
       fontWeight: "800",
       marginTop: 150,
       marginBottom: 30,

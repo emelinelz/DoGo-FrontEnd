@@ -46,6 +46,9 @@ constructor(){
              </Item> */}
            </Header>
          </MapView>
+         <Text style={styles.title}>
+            Quand:
+          </Text>
         <DatePicker
            defaultDate={new Date(2018, 4, 4)}
            minimumDate={new Date(2018, 1, 1)}
@@ -61,15 +64,16 @@ constructor(){
            onDateChange={this.setDate}
            disabled={false}
          />
-         <View style={{flex:1,width:'100%'}}>
+         {/* <View style={{flex:1,width:'100%'}}>
            <TouchableOpacity style={{backgroundColor:'blue', position: 'absolute', bottom: 100,width:'100%', maxWidth: '50%'}} onPress={()=>this.navigation.navigator('List')}>
                 <Text style={{color:'black'}}> Valider </Text>
            </TouchableOpacity>
-         </View>
+         </View> */}
 
-         <Button full primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
-            <Icon name='paw'/>
-            <Text>Cherche</Text>
+
+          
+         <Button onPress={ () => this.props.navigation.navigate('ListScreen')}>
+            <Text>Chercher</Text>
           </Button>
       </View>
 
@@ -77,3 +81,22 @@ constructor(){
      );
 }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin:50
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop:25,
+    marginBottom:10
+  },
+  button: {
+    fontSize:80,
+    textAlign:'center',
+    backgroundColor: 'white',
+    width:300
+  },
+  
+});

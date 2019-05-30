@@ -1,7 +1,7 @@
 import React from 'react';
 import { ImageBackground, AppRegistry, View} from 'react-native';
 import Promenade from '../Promenade/Promenade';
-import {Button,Icon,Text,Footer} from 'native-base'
+import {Button,Icon,Text,Footer,FooterTab} from 'native-base'
 
 
 export default class ListScreen extends React.Component {
@@ -49,21 +49,29 @@ export default class ListScreen extends React.Component {
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'stretch',
+        marginHorizontal:20
        }}>
       {promenade}
         
        
       <Button full bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
-            <Icon name='camera'/>
+            <Icon active name='camera'/>
             <Text>Prendre photo</Text>
           </Button>
      
        </View>
 <Footer>
-<Button primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
-            <Icon name='paw'/>
+<FooterTab>
+<Button transparent primary onPress={ () => this.props.navigation.navigate('Signin')}>
+            <Icon name='add'/>
             <Text>Add a promenade</Text>
           </Button>
+          <Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
+            <Icon name='alarm'/>
+            <Text>Créer une alerte</Text>
+          </Button>
+</FooterTab>
+
 </Footer>
       
       </ImageBackground>    );
