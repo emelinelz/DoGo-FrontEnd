@@ -1,74 +1,84 @@
-
 import React from 'react';
-import { Button, Text, View } from 'react-native';
+import { View, Text } from 'react-native';
 import { Camera, Permissions } from 'expo';
-// Premièrement il faut importer le composant Caméra.
-// Permissions pour l’accès de la caméra sur le téléphone.
+import Toolbar from '../Camera/toolbar.component';
+import Gallery from '../Camera/gallery.component';
+import styles from '../Camera/styles';
+
 export default class CameraScreen extends React.Component {
-// Les console log vont permettre de récupérer dans la console les informations liés aux prises des photos
-  onPictureSaved = async photo => {
-    console.log(photo.uri);
-    console.log(photo.width);
-    console.log(photo.height);
-    console.log(photo.exif);
-    console.log(photo.base64);
-  }
-  state = {
-     permision: null,
-     type: Camera.Constants.Type.back
-   };
-   // Demander l’autorisation de l’utilisation de la caméra :
-   //
-   // Cest une étape asynchrone que l’on va rendre synchrone grace au Await
+  camera = null;
+      state = {
+          captures: [],
+          // setting flash to be turned off by default
+          flashMode: Camera.Constants.FlashMode.off,
+          capturing: null,
+          // start the back camera by default
+          cameraType: Camera.Constants.Type.back,
+          hasCameraPermission: null,
+      };
 
-   async componentDidMount() {
-     var { status } = await Permissions.askAsync(Permissions.CAMERA);
-     var permision = (status === 'granted')? true : false;
-     this.setState({ permision });
-   }
-// Démarrer la caméra :
-// Cette étape intervient à la suite du render , on va pouvoir l’initialiser à l’aide de conditions.
-  render() {
-    if (this.state.permision === null) {
-      return <View />;
-    }
-    else if (this.state.permision === false) {
-      return <Text>No access to camera</Text>;
-    }
-    else {
-      return (
-        <View style={{ flex: 1 }}>
-          <Camera
-           ref={ref => { this.camera = ref }}
-           style={{ flex: 1 }} type={this.state.type}>
+      setFlashMode = (flashMode) => this.setState({ flashMode });
+      setCameraType = (cameraType) => this.setState({ cameraType });
+      handleCaptureIn = () => this.setState({ capturing: true });
 
-          </Camera>
+      handleCaptureOut = () => {
+          if (this.state.capturing)
+              this.camera.stopRecording();
+      };
 
-// Les Options de la Caméra :
-// la définition de l'image ( Quality)
-          <Button title="snapshot"
-               onPress={() => {
-                  if (this.camera) {
-                     this.camera.takePictureAsync({ onPictureSaved: this.onPictureSaved,
-                       quality : 0.7,
-                       base64: true,
-                       exif: true });
-                  }
-                }}
-          />
+      handleShortCapture = async () => {
+          const photoData = await this.camera.takePictureAsync();
+          this.setState({ capturing: false, captures: [photoData, ...this.state.captures] })
+      };
 
-           // Utiliser la front camera et le reverse grace a la fonction front et back
-          <Button title="flip"
-                        onPress={() => {
-                          this.setState({
-                            type: this.state.type === Camera.Constants.Type.back
-                              ? Camera.Constants.Type.front
-                              : Camera.Constants.Type.back,
-                          });
-                        }}/>
+      handleLongCapture = async () => {
+          const videoData = await this.camera.recordAsync();
+          this.setState({ capturing: false, captures: [videoData, ...this.state.captures] });
+      };
+      async componentDidMount() {
+          const camera = await Permissions.askAsync(Permissions.CAMERA);
+          const audio = await Permissions.askAsync(Permissions.AUDIO_RECORDING);
+          const hasCameraPermission = (camera.status === 'granted' && audio.status === 'granted');
 
-        </View>
-      );
-    }
-  }
-}
+          this.setState({ hasCameraPermission });
+      };
+
+
+    render() {
+        const { hasCameraPermission, flashMode, cameraType, capturing, captures } = this.state;
+
+        if (hasCameraPermission === null) {
+            return <View />;
+        } else if (hasCameraPermission === false) {
+            return <Text>Access to camera has been denied.</Text>;
+        }
+
+        return (
+          <React.Fragment>
+                          <View>
+                          <Camera
+                              type={cameraType}
+                              flashMode={flashMode}
+                              style={styles.preview}
+                              ref={camera => this.camera = camera}
+                          />
+                          </View>
+
+                          {captures.length > 0 && <Gallery captures={captures}/>}
+
+                      <Toolbar
+                          capturing={capturing}
+                          flashMode={flashMode}
+                          cameraType={cameraType}
+                          setFlashMode={this.setFlashMode}
+                          setCameraType={this.setCameraType}
+                          onCaptureIn={this.handleCaptureIn}
+                          onCaptureOut={this.handleCaptureOut}
+                          onLongCapture={this.handleLongCapture}
+                          onShortCapture={this.handleShortCapture}
+                      />
+
+                      </React.Fragment>
+        );
+    };
+};

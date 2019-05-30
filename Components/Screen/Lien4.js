@@ -1,10 +1,6 @@
 import React from 'react';
 import { ImageBackground, AppRegistry, View,Button} from 'react-native';
 
-
-
-
-
 export default class Lien4 extends React.Component {
 
 
