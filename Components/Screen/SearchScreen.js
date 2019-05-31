@@ -5,7 +5,6 @@ import {Marker} from 'react-native-maps';
 import { Location, Permissions } from 'expo';
 import { Container, Header, Content, Button, Icon, Item, Input, Footer, DatePicker} from 'native-base';
 
-
 export default class SearchScreen extends React.Component {
 
 constructor(){
@@ -101,7 +100,7 @@ constructor(){
   </View>
 
       <View style= {{ height:30, flex:'bottom'}}>
-         <Button full primary onPress={ () => this.props.navigation.navigate('List')}>
+         <Button full primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
             <Icon name='paw'/>
             <Text>Cherche</Text>
           </Button>

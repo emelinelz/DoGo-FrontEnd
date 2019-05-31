@@ -10,6 +10,8 @@ import Signup from '../Screen/Signup';
 import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
 import {Icon } from 'native-base';
+import MonCompte from '../Screen/MonCompte'
+
 
 var MainNavigator = createBottomTabNavigator(
   
@@ -87,7 +89,14 @@ var StackNavigator = createStackNavigator({
     navigationOptions: () => ({
       header: null
     })
+  },
+  MonCompte:{
+    screen:MonCompte,
+    navigationOptions:()=>({
+      title:'Mon Compte'
+    })
   }
+
 });
 
 

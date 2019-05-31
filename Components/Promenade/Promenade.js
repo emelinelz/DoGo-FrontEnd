@@ -158,19 +158,24 @@ export default class Promenade extends React.Component{
               </Right>
             </CardItem>
 
-<CardItem>
-  <Body>
+
+  
             <Button full bordered primary onPress={this.setModalInvisible}>
 <Icon name='arrow-back' />
          <Text> Go Back</Text>
        </Button>
-      
+       
+    
        <Button full bordered primary onPress={this.setModalInvisible}>
 <Icon name='arrow-forward' />
          <Text> I Joint</Text>
        </Button>
-       </Body>
-       </CardItem>
+       
+       
+       <Button full bordered primary onPress={this.props.press}>
+            <Icon active name='camera'/>
+            <Text>Prendre photo</Text>
+          </Button>
           </Card>
 
         {/* <View style={{flex:1}}>

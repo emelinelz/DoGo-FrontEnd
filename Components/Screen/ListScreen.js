@@ -38,7 +38,7 @@ export default class ListScreen extends React.Component {
       }
     ]
     var promenade = promenadeBD.map((item,i)=>{
-      return <Promenade cp={item.cp}desc={item.desc}adress={item.adress}key={i} username={item.username} img={item.avatar} date={item.date} duree={item.duree}/>
+      return <Promenade cp={item.cp}desc={item.desc}adress={item.adress}key={i} username={item.username} img={item.avatar} date={item.date} duree={item.duree} press={() => this.props.navigation.navigate('CameraScreen')}/>
     })
 
     return (
