@@ -2,6 +2,7 @@ import React from 'react';
 import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, TouchableWithoutFeedback,
   Alert, KeyboardAvoidingView, StyleSheet} from 'react-native';
   import { connect } from 'react-redux';
+  import url from '../../config';
 
 class Signin extends React.Component {
 
@@ -25,7 +26,7 @@ class Signin extends React.Component {
         data.isUserExist
           ? (
               console.log("ok"),
-              this.props.handleUserValid(data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
+              this.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
               this.props.navigation.navigate('MonCompte')
             )
           : this.setState({errorMessage: 'Wrong credentials, try again...'})
@@ -134,9 +135,10 @@ const styles=  StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleUserValid: function(nameUser,emailUser,dog1User,dog1genderUser,avatarUser,tokenUser) {
+    handleUserValid: function(idUser,nameUser,emailUser,dog1User,dog1genderUser,avatarUser,tokenUser) {
         dispatch({
           type: 'setUser',
+          userId:idUser,
           name: nameUser,
           email: emailUser,
           dog1: dog1User,

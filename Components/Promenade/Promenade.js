@@ -34,12 +34,12 @@ export default class Promenade extends React.Component{
       <Card>
             <CardItem >
               <Left>
-                <Thumbnail square large source={{uri: this.props.img}} />
+                <Thumbnail square large source={{uri: this.props.avatar}} />
                
               </Left>
              <Body>
              <Text>{this.props.username}</Text>
-                  <Text note>GeekyAnts</Text>
+                  <Text note>{this.props.username}</Text>
              <Text>{this.props.adress}</Text>
               </Body>
               <Right>
@@ -59,13 +59,13 @@ export default class Promenade extends React.Component{
               <Body>
                 <Button transparent>
                   <Icon active name="people" />
-                  <Text>4 participants</Text>
+                  <Text>{this.props.participant}participants</Text>
                 </Button>
               </Body>
               <Right>
               <Button transparent>
                   <Icon active name="navigate" />
-                  <Text>0.5km</Text>
+                  <Text>{this.props.distance}km</Text>
                 </Button>
               </Right>
             </CardItem>
@@ -111,15 +111,15 @@ export default class Promenade extends React.Component{
               <Left>
               <Thumbnail square large source={{uri: this.props.img}} />
                 <Body>
-                  <Text>NativeBase</Text>
-                  <Text note>April 15, 2016</Text>
+                  <Text>{this.props.username}</Text>
+                  <Text note>{this.props.date}</Text>
                 </Body>
               </Left>
             </CardItem>
             <CardItem>
               <Body>
                 <Text>
-                  blablal blablal blablal blablal
+                  {this.props.description}
                 </Text>
               </Body>
             </CardItem>

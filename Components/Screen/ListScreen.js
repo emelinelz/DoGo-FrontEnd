@@ -1,57 +1,55 @@
 import React from 'react';
-import { ImageBackground, AppRegistry, View} from 'react-native';
+import { ImageBackground, AppRegistry, View,ScrollView} from 'react-native';
 import Promenade from '../Promenade/Promenade';
-import {Button,Icon,Text,Footer,FooterTab} from 'native-base'
-
+import {Button,Icon,Text,Footer,FooterTab} from 'native-base';
+import url from '../../config';
 
 export default class ListScreen extends React.Component {
+  constructor(){
+    super()
+    this.state={
+      promenadeBD:[]
+    };
+  }
+
+  componentDidMount() {
+    var ctx = this;
+    fetch(`${url}/promenades`)
+    .then(function(response){
+      return response.json();
+    }).then(function(promenade){
+      console.log(promenade.data)
+      ctx.setState({promenadeBD: promenade.data});
+    }).catch(function(error){
+      console.error(error);
+    });
+
+  }
+  
+
+
+
 
   render() {
+     
+    var promenadeList = this.state.promenadeBD.map((item,i)=>{
+      if(this.state.promenadeBD.length===0){
+        return <Text>Pas de promenade</Text>
+      }else{
+        return <Promenade cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} press={() => this.props.navigation.navigate('CameraScreen')}/>
 
-    var promenadeBD=[
-      { avatar:'https://avatarfiles.alphacoders.com/115/thumb-115246.jpg',
-        username:'mika',
-        adress:'12,rue saint-denis',
-        cp:'75002',
-        date:'01/06/2019',
-        heure:'8h',
-        duree:'1h',
-        desc:'lalallala lalallalala'
-      },
-      { avatar:'https://avatarfiles.alphacoders.com/115/thumb-115246.jpg',
-        username:'mika',
-        adress:'12,rue saint-denis',
-        cp:'75002',
-        date:'01/06/2019',
-        heure:'8h',
-        duree:'1h',
-        desc:'lalallala lalallalala'
-      },
-      { avatar:'https://avatarfiles.alphacoders.com/115/thumb-115246.jpg',
-        username:'mika',
-        adress:'12,rue saint-denis',
-        cp:'75002',
-        date:'01/06/2019',
-        heure:'8h',
-        duree:'1h',
-        desc:'lalallala lalallalala'
       }
-    ]
-    var promenade = promenadeBD.map((item,i)=>{
-      return <Promenade cp={item.cp}desc={item.desc}adress={item.adress}key={i} username={item.username} img={item.avatar} date={item.date} duree={item.duree} press={() => this.props.navigation.navigate('CameraScreen')}/>
     })
 
     return (
       <ImageBackground style={{flex:1}} 
         backgroundColor='white'>
-       <View style={{
+       <ScrollView style={{
         flex: 1,
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'stretch',
+       
         marginHorizontal:20
        }}>
-      {promenade}
+      {promenadeList}
         
        
       <Button full bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
@@ -59,7 +57,7 @@ export default class ListScreen extends React.Component {
             <Text>Prendre photo</Text>
           </Button>
      
-       </View>
+       </ScrollView>
 <Footer>
 <FooterTab>
 <Button transparent primary onPress={ () => this.props.navigation.navigate('Signin')}>

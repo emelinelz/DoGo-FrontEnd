@@ -97,7 +97,7 @@ constructor(){
       return res.json()
     }).then(function(data){
       console.log(data);
-      ctx.props.handleUserValid(data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token);
+      ctx.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token);
       ctx.props.navigation.navigate('MonCompte');
     }).catch(function(err){
       console.log(err)
@@ -229,9 +229,10 @@ const styles=  StyleSheet.create({
 
 function mapDispatchToProps(dispatch) {
   return {
-    handleUserValid: function(nameUser,emailUser,dog1User,dog1genderUser,avatarUser,tokenUser) {
+    handleUserValid: function(idUser,nameUser,emailUser,dog1User,dog1genderUser,avatarUser,tokenUser) {
         dispatch({
           type: 'setUser',
+          userId:idUser,
           name: nameUser,
           email: emailUser,
           dog1: dog1User,
