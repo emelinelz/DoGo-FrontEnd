@@ -14,7 +14,7 @@ export default class ListScreen extends React.Component {
 
   componentDidMount() {
     var ctx = this;
-    fetch(`${url}/promenades`)
+    fetch(`${url}/list_promenade`)
     .then(function(response){
       return response.json();
     }).then(function(promenade){
@@ -36,7 +36,7 @@ export default class ListScreen extends React.Component {
       if(this.state.promenadeBD.length===0){
         return <Text>Pas de promenade</Text>
       }else{
-        return <Promenade cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} press={() => this.props.navigation.navigate('CameraScreen')}/>
+        return <Promenade cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} dog1={item.userId.dog1}avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} press={() => this.props.navigation.navigate('CameraScreen')}/>
 
       }
     })

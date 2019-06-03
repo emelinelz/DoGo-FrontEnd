@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Style, TouchableOpacity, Picker,Slider} from 'react-native';
+import { Linking,StyleSheet, Text, View, Style, TouchableOpacity, Picker,Slider} from 'react-native';
 import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 import { Location, Permissions } from 'expo';
@@ -106,6 +106,7 @@ constructor(){
           </Button>
         </View>
       </View>
+     
  </View>
 
      );

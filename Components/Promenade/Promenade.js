@@ -31,7 +31,7 @@ export default class Promenade extends React.Component{
     return(
 
     <View>
-      <Card>
+      <Card >
             <CardItem >
               <Left>
                 <Thumbnail square large source={{uri: this.props.avatar}} />
@@ -39,7 +39,7 @@ export default class Promenade extends React.Component{
               </Left>
              <Body>
              <Text>{this.props.username}</Text>
-                  <Text note>{this.props.username}</Text>
+                  <Text note>{this.props.dog1}</Text>
              <Text>{this.props.adress}</Text>
               </Body>
               <Right>

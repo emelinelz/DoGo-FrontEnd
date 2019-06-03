@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import {StyleSheet,View} from 'react-native';
 import { Form,DatePicker,Picker,Container, Item,Input,Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Thumbnail } from 'native-base';
-import {connect} from 'react-redux'
+import {connect} from 'react-redux';
+import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+
 
 class AddPromenade extends Component {
   constructor(props) {
@@ -81,6 +83,37 @@ class AddPromenade extends Component {
           <Text style={styles.title}>
             Lieu:
           </Text>
+          <GooglePlacesAutocomplete
+           query={{
+            // available options: https://developers.google.com/places/web-service/autocomplete
+            key: 'AIzaSyD1RR9LfAYW7ZgJWXQokIlo4QzM8_nvzUs',
+            language: 'en', // language of the results
+            types: '(cities)' // default: 'geocode'
+          }}
+  placeholder='Enter Location'
+  minLength={2}
+  autoFocus={false}
+  returnKeyType={'default'}
+  fetchDetails={true}
+  styles={{
+    textInputContainer: {
+      backgroundColor: 'rgba(0,0,0,0)',
+      borderTopWidth: 0,
+      borderBottomWidth:0
+    },
+    textInput: {
+      marginLeft: 0,
+      marginRight: 0,
+      height: 38,
+      color: '#5d5d5d',
+      fontSize: 16
+    },
+    predefinedPlacesDescription: {
+      color: '#1faadb'
+    },
+  }}
+  currentLocation={false}
+/>
           <Item rounded>
             <Input onChangeText={(e) => this.setState({adress: e})} placeholder='Ville, code postal...'/>
           </Item>

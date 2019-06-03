@@ -47,7 +47,6 @@ var StackNavigator = createStackNavigator({
      backgroundColor: '##2bcbba',
        },
 
-
     })
   },
   MainNavigator:{
