@@ -9,7 +9,7 @@ import ListScreen from '../Screen/ListScreen';
 import Lien4 from '../Screen/Lien4';
 import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
-import {Icon } from 'native-base';
+import { Icon } from 'native-base';
 
 var MainNavigator = createBottomTabNavigator(
   {

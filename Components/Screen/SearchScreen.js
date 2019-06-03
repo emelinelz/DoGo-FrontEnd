@@ -1,9 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, Picker,Slider, Divider} from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, Picker, Divider, Slider } from 'react-native';
 import MapView, { Marker } from 'react-native-maps';
 import { Location, Permissions } from 'expo';
-import { Container, Header, Content, Button, Icon, Item, Input, FooterTab, DatePicker} from 'native-base';
-import TimePicker from "react-native-24h-timepicker";
+import { Container, Header, Content, Button, Icon, Item, Input, FooterTab } from 'native-base';
+import TimePicker from 'react-native-24h-timepicker';
+import DatePicker from 'react-native-datepicker';
+
 
 export default class SearchScreen extends React.Component {
 
@@ -61,12 +63,12 @@ _getLocationAsync = async () => {
    return (
      <View style={{flex:1, justifyContent: 'center'}}>
 
-               <Header style={{ backgroundColor:'#ffff'}}searchBar rounded>
-                <Item style= {{marginBottom:50, padding:0}}>
-                   <Icon name="ios-search" />
-                    <Input placeholder="Autour de moi" />
-                </Item>
-               </Header>
+      <Header style={{ backgroundColor:'#ffff'}} searchBar rounded >
+        <Item style= {{ padding:0 }}>
+          <Icon name="ios-search" />
+          <Input placeholder="Autour de moi" />
+        </Item>
+      </Header>
 
       <View style={{flex : 1, padding:0}} >
       <MapView style={{height:400, width: 600}}
@@ -77,61 +79,72 @@ _getLocationAsync = async () => {
                   longitudeDelta: 0.0421,
                   }}
                   >
+
                 <Marker
                   key={"currentPosition"}
                   pinColor="red"
                   title="Hello , "
                   description="You are here"
-                  coordinate={{latitude:this.state.latitude, longitude:this.state.longitude}}/>
+                  coordinate={{latitude:this.state.latitude, longitude:this.state.longitude}}
+                  draggable
+                  >
+                  <View>
+                </View>
+                  </Marker>
 
        </MapView>
     </View>
 
 
- <Content>
-
-                     <View style= {{ height:30, backgroundColor:'#d3d3d3', marginTop: 80}}>
-                       <Slider style={{width: 200, height: 40}}
+            <Content>
+                     <View style= {{ height:80, backgroundColor:'#d3d3d3', marginTop: 80}}>
+                      <Text>Rayon</Text>
+                       <Slider style={{width: '100%',paddingLeft:30}}
                           minimumValue={0}
                           maximumValue={1}
                           minimumTrackTintColor="#FFFFFF"
                           maximumTrackTintColor="#dcdcdc"
                         />
+                        <Text>Duree approximative :</Text>
+                      </View>
+
+                      <View style={{flexDirection: 'column', border:3, backgroundColor:'white', color:'black', justifyContent:'center',aligntext:'center', verticalAlign:'bottom'}}>
+                        <View>
+                            <TouchableOpacity
+                              onPress={() => this.TimePicker.open()}
+                              >
+                              <Text> Duree </Text>
+
+                            </TouchableOpacity>
+                            <Text>{this.state.time}</Text>
+                            <TimePicker
+                              ref={ref => {
+                                this.TimePicker = ref;
+                              }}
+                              onCancel={() => this.onCancel()}
+                              onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
+                            />
+                          </View>
+                       </View>
+
+
+                      <View style={{flex:1, marginTop:40, marginLeft:20}}>
+                        <DatePicker
+                          style={{width: 200}}
+                          date={this.state.date}
+                          mode="date"
+                          placeholder="Date"
+                          format="DD/MM/YYYY"
+                          minDate="2016/05/01"
+                          maxDate="2016/06/01"
+                          confirmBtnText="Confirmer"
+                          cancelBtnText="Annuler"
+                          showIcon={false}
+                          onDateChange={(date) => {this.setState({date: date})}}
+                        />
                       </View>
 
 
-                    <View style={{flexDirection: 'row', border:4, marginTop: 50, backgroundColor:'white', color:'black', justifyContent:'center',aligntext:'center'}}>
-                       <DatePicker
-                       style={{width: 200, color:'red'}}
-                      date={this.state.date}
-                      mode="date"
-                      placeholder="select date"
-                      format="YYYY-MM-DD"
-                      minDate="2016-05-01"
-                      maxDate="2016-06-01"
-                      androidMode="spinner"
-                       onDateChange={(date) => {this.setState({date: date})}}
-                        />
-                   </View>
-
-               <View style={{flexDirection: 'row', border:4, backgroundColor:'white', color:'black', justifyContent:'center',aligntext:'center', verticalAlign:'bottom'}}>
-                 <View>
-                     <TouchableOpacity
-                       onPress={() => this.TimePicker.open()}
-                       >
-                       <Text> Fixer l'heure </Text>
-
-                     </TouchableOpacity>
-                     <Text>{this.state.time}</Text>
-                     <TimePicker
-                       ref={ref => {
-                         this.TimePicker = ref;
-                       }}
-                       onCancel={() => this.onCancel()}
-                       onConfirm={(hour, minute) => this.onConfirm(hour, minute)}
-                     />
-                   </View>
-                </View>
 
 
                 <FooterTab>
@@ -141,7 +154,7 @@ _getLocationAsync = async () => {
                   </Button>
                 </FooterTab>
 
-              
+
 
  </Content>
 
