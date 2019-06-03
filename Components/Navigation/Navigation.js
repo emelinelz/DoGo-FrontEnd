@@ -1,5 +1,5 @@
 import React from 'react';
-import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
+import {createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems, } from 'react-navigation';
 import {Platform} from 'react-native'
 import Home from '../Screen/Home';
 import SearchScreen from '../Screen/SearchScreen';
@@ -11,14 +11,18 @@ import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
 import { Icon } from 'native-base';
 
+
+
+
 var MainNavigator = createBottomTabNavigator(
   {
-    'Ajouter une promenade': Home,
+
+    'Ajouter une promenade': AddPromenade,
     'Trouver une promenade':SearchScreen
   },
   {
       defaultNavigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, tintColor }) =>{
+        tabBarIcon: ({ focused, tintColor, horizontal }) =>{
           if (navigation.state.routeName == 'Ajouter une promenade'){
             return <Icon  name="add-circle" />
           }
@@ -33,58 +37,70 @@ var MainNavigator = createBottomTabNavigator(
       },
     }
 );
+
+
+
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    SearchScreen: SearchScreen,
+    ListScreen: ListScreen,
+    AddPromenade: AddPromenade
+  },
+);
+
+
+
+
 var StackNavigator = createStackNavigator({
+
+
+
+
+  Home: Home,
+  SearchScreen: SearchScreen,
+  ListScreen: ListScreen,
+  AddPromenade: AddPromenade,
+  Lien4: Lien4,
+
   MainNavigator:{
     screen: MainNavigator
   },
-  Home: {
-    screen: Home,
-    navigationOptions: () => ({
-      headerStyle: {
-     backgroundColor: '##2bcbba',
-       },
+
+  'Ajouter une promenade': {
+    screen: DrawerNavigator,
+    navigationOptions: ({ navigation }) => {
+        let headerLeft = (
+          <Icon
+            style={{ paddingLeft: 20 }}
+            onPress={() => navigation.openDrawer()}
+            name='md-menu'
+            size={30}
+          />
+        );
+        return { headerLeft};
+      },
+
+    },
+  Signin: Signin,
+  CameraScreen: CameraScreen,
 
 
-    })
-  },
-  SearchScreen:{
-    screen: SearchScreen,
-    navigationOptions: () => ({
-      title: "Concept"
-    })
-  },
-
-  ListScreen:{
-    screen: ListScreen,
-    navigationOptions: () => ({
-      title: 'List de promenades'
-    })
-  },
-  AddPromenade:  {
-    screen: AddPromenade,
-    navigationOptions: () => ({
-      title: 'Proposer un promenade'
-    })
-  },
-  Lien4:{
-    screen: Lien4,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  Signin:  {
-    screen: Signin,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  CameraScreen:{
-    screen: CameraScreen,
-    navigationOptions: () => ({
-      header: null
-    })
+},
+{
+  defaultNavigationOptions: {
+    title: 'DoGo',
+    headerStyle: { height: 60 },
+    headerTitleStyle: {
+      flex: 1,
+      textAlign: 'center',
+      color: "#2bcbba",
+      fontWeight: '800'
+    }
   }
-});
+}
+
+);
 
 
 
