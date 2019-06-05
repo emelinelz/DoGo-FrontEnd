@@ -1,6 +1,6 @@
 import React from 'react';
-import {createBottomTabNavigator, createAppContainer, createStackNavigator} from 'react-navigation';
-import {Platform} from 'react-native'
+import {Button,createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems, } from 'react-navigation';
+import {Platform} from 'react-native';
 import Home from '../Screen/Home';
 import SearchScreen from '../Screen/SearchScreen';
 import AddPromenade from '../Screen/AddPromenade';
@@ -10,18 +10,22 @@ import Signup from '../Screen/Signup';
 import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
 import {Icon } from 'native-base';
-import MonCompte from '../Screen/MonCompte'
+import MonCompte from '../Screen/MonCompte';
+import PromenadeScreen from '../Screen/PromenadeScreen';
+import Promenade from '../Promenade/Promenade';
+import MesPromenades from '../Screen/MesPromenades';
+import maptest from '../Screen/maptest'
+
 
 
 var MainNavigator = createBottomTabNavigator(
-  
-  { 
-    'Ajouter une promenade': Home,
+  {
+    'Ajouter une promenade': AddPromenade,
     'Trouver une promenade':SearchScreen
   },
   {
       defaultNavigationOptions: ({ navigation }) => ({
-        tabBarIcon: ({ focused, tintColor }) =>{
+        tabBarIcon: ({ focused, tintColor, horizontal }) =>{
           if (navigation.state.routeName == 'Ajouter une promenade'){
             return <Icon  name="add-circle" />
           }
@@ -36,67 +40,53 @@ var MainNavigator = createBottomTabNavigator(
       },
     }
 );
+
+
+const DrawerNavigator = createDrawerNavigator(
+  {
+    SearchScreen: SearchScreen,
+    ListScreen: ListScreen,
+    AddPromenade: AddPromenade
+  },
+);
+
+
 var StackNavigator = createStackNavigator({
+
+
+  Home: Home,
+  SearchScreen: SearchScreen,
+  ListScreen: ListScreen,
+  AddPromenade: AddPromenade,
+  Signup: Signup,
+
   MainNavigator:{
     screen: MainNavigator
   },
-  Home: {
-    screen: Home,
-    navigationOptions: () => ({
-      headerStyle: {
-     backgroundColor: '##2bcbba',
-       },
 
-    })
-  },
-  MainNavigator:{
-    screen: MainNavigator
-  },
-  SearchScreen:{
-    screen: SearchScreen,
-    navigationOptions: () => ({
-      title: "Chercher un promenade"
-    })
-  },
-
-  ListScreen:{
-    screen: ListScreen,
-    navigationOptions: () => ({
-      title: 'List de promenades'
-    })
-  },
-  AddPromenade:  {
-    screen: AddPromenade,
-    navigationOptions: () => ({
-      title: 'Proposer un promenade'
-    })
-  },
-  Signup:{
-    screen: Signup,
-    navigationOptions: () => ({
-      title: 'Sign up'
-    })
-  },
-  Signin:  {
-    screen: Signin,
-    navigationOptions: () => ({
-      title: 'Sign in'
-    })
-  },
-  CameraScreen:{
-    screen: CameraScreen,
-    navigationOptions: () => ({
-      header: null
-    })
-  },
-  MonCompte:{
-    screen:MonCompte,
-    navigationOptions:()=>({
-      title:'Mon Compte'
-    })
+  Signin: Signin,
+  CameraScreen: CameraScreen,
+MonCompte:MonCompte,
+PromenadeScreen:PromenadeScreen,
+Promenade:Promenade,
+MesPromenades:MesPromenades,
+maptest:maptest
+},
+{
+  defaultNavigationOptions: {
+    title: 'DoGo',
+    headerStyle: { height: 60 },
+    
+    headerTitleStyle: {
+      flex: 1,
+      textAlign: 'center',
+      color: "#2bcbba",
+      fontWeight: '800'
+    }
   }
+}
 
-});
+);
 
 
 

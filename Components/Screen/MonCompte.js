@@ -1,7 +1,5 @@
 import React from 'react';
 
-import {Avatar} from 'react-native-elements';
-
 import { connect } from 'react-redux';
 import {Icon,Thumbnail,Form,Textarea,Footer,FooterTab,Content,Button,Text,View,Container} from 'native-base'
 
@@ -43,9 +41,9 @@ class MonCompte extends React.Component {
 
 <Footer>
 <FooterTab>
-<Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
-            <Icon name='add'/>
-            <Text>Add a promenade</Text>
+<Button transparent primary onPress={ () => this.props.navigation.navigate('MesPromenades')}>
+            <Icon name='paw'/>
+            <Text>Mes Promenades</Text>
           </Button>
           <Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
             <Icon name='alarm'/>
