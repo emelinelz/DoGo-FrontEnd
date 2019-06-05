@@ -1,12 +1,39 @@
 import React from 'react';
 import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, TouchableWithoutFeedback,
   Alert, KeyboardAvoidingView, StyleSheet} from 'react-native';
+  import { connect } from 'react-redux';
+  import url from '../../config';
 
+class Signin extends React.Component {
 
+  constructor(){
+    super()
+    this.state = {
+      email: '',
+      password: '',
+      errorMessage: ''
+    }
+  }
 
+  handleSumbit = () => {
 
-
-export default class Signin extends React.Component {
+    console.log('signin from front handled...');
+  
+    fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
+    .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
+    ).then(data => {
+      console.log(data)
+        data.isUserExist
+          ? (
+              console.log("ok"),
+              this.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
+              this.props.navigation.navigate('MonCompte')
+            )
+          : this.setState({errorMessage: 'Wrong credentials, try again...'})
+    }).catch(err => {
+      console.log(err)
+    })
+  }
 
   render() {
     return (
@@ -15,20 +42,28 @@ export default class Signin extends React.Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
-          <Text style={styles.logoText}>Caps</Text>
-            <TextInput placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
-            <TextInput placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
+          <Text style={styles.logoText}>Sign in</Text>
+            <TextInput onChangeText={(e) => this.setState({email: e})} placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
+            <TextInput onChangeText={(e) => this.setState({password: e})} placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
+            <Text style={{color:'red', marginLeft:20}}>{this.state.errorMessage}</Text>
             <Button
               buttonStyle={styles.loginButton}
-              onPress={() => this.onLoginPress()}
+              onPress={this.handleSumbit}              
               title="Login"
             />
-            <Button
+              <Button
               buttonStyle={styles.fbLoginButton}
               onPress={() => this.onFbLoginPress()}
               title="Login with Facebook"
               color="#3897f1"
             />
+            <Button
+              buttonStyle={styles.fbLoginButton}
+              onPress={() => this.props.navigation.navigate('Signup')}
+              title="Pas de compte? Sign up"
+              color="#3897f1"
+            />
+          
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -36,15 +71,6 @@ export default class Signin extends React.Component {
     );
   }
 
-  componentDidMount() {
-  }
-
-  componentWillUnmount() {
-  }
-
-  onLoginPress() {
-
-  }
 
   async onFbLoginPress() {
     const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, {
@@ -60,6 +86,8 @@ export default class Signin extends React.Component {
     }
   }
 }
+
+
 const styles=  StyleSheet.create({
 
       containerView: {
@@ -69,7 +97,7 @@ const styles=  StyleSheet.create({
       flex: 1,
       },
       logoText: {
-      fontSize: 40,
+      fontSize: 30,
       fontWeight: "800",
       marginTop: 150,
       marginBottom: 30,
@@ -103,5 +131,26 @@ const styles=  StyleSheet.create({
           marginTop: 10,
           backgroundColor: 'transparent',
         },
+})
+
+function mapDispatchToProps(dispatch) {
+  return {
+    handleUserValid: function(idUser,nameUser,emailUser,dog1User,dog1genderUser,avatarUser,tokenUser) {
+        dispatch({
+          type: 'setUser',
+          userId:idUser,
+          name: nameUser,
+          email: emailUser,
+          dog1: dog1User,
+          dog1gender:dog1genderUser,
+          avatar:avatarUser,
+          token: tokenUser
+        })
+    }
+  }
 }
-)
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Signin);

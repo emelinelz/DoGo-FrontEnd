@@ -113,7 +113,7 @@ export default class Home extends React.Component {
 
 </Button>
 
-<Button bordered success style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={() => this.props.navigation.navigate('AddPromenade')}>
+<Button bordered success style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={() => this.props.navigation.navigate('Signin')}>
 <Text >Proposer une promenade</Text>
 </Button>
 
