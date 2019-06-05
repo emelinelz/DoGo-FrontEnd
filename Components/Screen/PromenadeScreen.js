@@ -54,22 +54,37 @@ class PromenadeScreen extends React.Component{
              (
             <Card style={{flex: 1}}>
 
+<CardItem cardBody >
+           
+           <Thumbnail style={{marginLeft:15,marginTop:10}}square large source={{uri: this.state.promenadeSelected.userId.avatar}} />
+          
+       
+        <View style={{marginLeft:10,marginTop:10}}>
+             <View>
+             
+             <Text style={{fontWeight: 'bold'}}><Icon style={{color:'blue',fontSize:15}} name="person" />  {this.state.promenadeSelected.userId.username}</Text>
+             <Text style={{fontWeight: 'bold'}}><Icon style={{color:'blue',fontSize:15}} name="paw" />  {this.state.promenadeSelected.userId.dog1}</Text>
+             </View>
+
+             <View style={{marginTop:8}}>
+               <Text><Icon style={{color:'blue',fontSize:15}} name="pin" /> {this.state.promenadeSelected.adress}</Text>
+               <Text><Icon style={{color:'blue',fontSize:15}} name="warning" /> {this.state.promenadeSelected.warning}</Text>
+             </View>
+     
+         </View>
+
+        
+       </CardItem>
         <CardItem>
-        <Left>
-        <Thumbnail square large source={{uri: this.state.promenadeSelected.userId.avatar}} />
-            <Body>
-            <Text>{this.state.promenadeSelected.userId.username}</Text>
-            <Text note>{this.state.promenadeSelected.adress}</Text>
-            </Body>
-        </Left>
-        </CardItem>
-        <CardItem>
-        <Body>
+        
             <Text>
             {this.state.promenadeSelected.description}
             </Text>
-        </Body>
+        
         </CardItem>
+
+
+
         <MapView mapType = "standard"
         style={{flex : 0.5}}
         initialRegion=
@@ -107,22 +122,20 @@ class PromenadeScreen extends React.Component{
 
 
 
-    <Button full bordered primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
-    <Icon name='arrow-back' />
-    <Text> Go Back</Text>
-    </Button>
+    
 
-
-    <Button full bordered primary onPress={ () => this.setState(participant=this.state.participant+1)}>
+<View>
+    <Button block bordered primary onPress={ () => this.setState(participant=this.state.participant+1)}>
     <Icon name='arrow-forward' />
     <Text> I Joint</Text>
     </Button>
 
 
-    <Button full bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
+    <Button block bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
     <Icon active name='camera'/>
     <Text>Prendre photo</Text>
     </Button>
+</View>
     </Card>
             
         ) 

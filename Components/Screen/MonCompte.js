@@ -41,13 +41,13 @@ class MonCompte extends React.Component {
 
 <Footer>
 <FooterTab>
-<Button transparent primary onPress={ () => this.props.navigation.navigate('MesPromenades')}>
-            <Icon name='paw'/>
-            <Text>Mes Promenades</Text>
+<Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
+            <Icon name='add'/>
+            <Text>Ajouter Promenades</Text>
           </Button>
-          <Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
-            <Icon name='alarm'/>
-            <Text>Créer une alerte</Text>
+          <Button transparent primary onPress={ () => this.props.navigation.navigate('MesPromenades')}>
+            <Icon name='paw'/>
+            <Text>Mes promenades</Text>
           </Button>
 </FooterTab>
 

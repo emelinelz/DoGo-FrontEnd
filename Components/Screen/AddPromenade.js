@@ -83,40 +83,56 @@ class AddPromenade extends Component {
           <Text style={styles.title}>
             Lieu:
           </Text>
-          <GooglePlacesAutocomplete
-           query={{
-            // available options: https://developers.google.com/places/web-service/autocomplete
-            key: 'AIzaSyD1RR9LfAYW7ZgJWXQokIlo4QzM8_nvzUs',
-            language: 'en', // language of the results
-            types: '(cities)' // default: 'geocode'
+
+          
+           <GooglePlacesAutocomplete
+          placeholder="Search"
+          minLength={2} // minimum length of text to search
+          autoFocus={false}
+          returnKeyType={'search'} // Can be left out for default return key https://facebook.github.io/react-native/docs/textinput.html#returnkeytype
+          listViewDisplayed="auto" // true/false/undefined
+          fetchDetails={true}
+          renderDescription={row => row.description} // custom description render
+          onPress={(data, details = null) => { this.setState({adress:data.description})
+            console.log(data);
+            console.log(details);
           }}
-  placeholder='Enter Location'
-  minLength={2}
-  autoFocus={false}
-  returnKeyType={'default'}
-  fetchDetails={true}
-  styles={{
-    textInputContainer: {
-      backgroundColor: 'rgba(0,0,0,0)',
-      borderTopWidth: 0,
-      borderBottomWidth:0
-    },
-    textInput: {
-      marginLeft: 0,
-      marginRight: 0,
-      height: 38,
-      color: '#5d5d5d',
-      fontSize: 16
-    },
-    predefinedPlacesDescription: {
-      color: '#1faadb'
-    },
-  }}
-  currentLocation={false}
-/>
-          <Item rounded>
-            <Input onChangeText={(e) => this.setState({adress: e})} placeholder='Ville, code postal...'/>
-          </Item>
+          getDefaultValue={() => {
+            return ''; // text input default value
+          }}
+          query={{
+            // available options: https://developers.google.com/places/web-service/autocomplete
+            key: 'AIzaSyAZEThpr4uj3OwmjvrgNY1uu7oAIaEoUHM',
+            language: 'fr', // language of the results
+            types: 'geocode', // default: 'geocode'
+          }}
+          styles={{
+            description: {
+              fontWeight: 'bold',
+            },
+            predefinedPlacesDescription: {
+              color: '#1faadb',
+            },
+          }}
+          currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+          currentLocationLabel="Current location"
+          nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
+          GoogleReverseGeocodingQuery={{
+            // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro
+          }}
+          GooglePlacesSearchQuery={{
+            // available options for GooglePlacesSearch API : https://developers.google.com/places/web-service/search
+            rankby: 'distance',
+            types: 'park',
+          }}
+          filterReverseGeocodingByTypes={[
+            'locality',
+            'administrative_area_level_3',
+          ]} // filter the reverse geocoding results by types - ['locality', 'administrative_area_level_3'] if you want to display only cities
+          
+          debounce={200}
+        />
+         
 
           <Text style={styles.title}>
             Quand:
@@ -124,7 +140,7 @@ class AddPromenade extends Component {
           <Item>
           <DatePicker
             defaultDate={new Date(2019, 6, 4)}
-            minimumDate={new Date(2019, 6, 1)}
+            minimumDate={new Date(2019, 5, 1)}
             maximumDate={new Date(2022, 12, 31)}
             locale={"en"}
             timeZoneOffsetInMinutes={undefined}

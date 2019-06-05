@@ -36,7 +36,7 @@ export default class maptest extends React.Component{
             // available options: https://developers.google.com/places/web-service/autocomplete
             key: 'AIzaSyAZEThpr4uj3OwmjvrgNY1uu7oAIaEoUHM',
             language: 'fr', // language of the results
-            types: 'cities', // default: 'geocode'
+            types: 'geocode', // default: 'geocode'
           }}
           styles={{
             description: {

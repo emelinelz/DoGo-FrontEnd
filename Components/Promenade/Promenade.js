@@ -3,8 +3,8 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 
 import {bottomDivider,Image,ListItem,Avatar,containerStyle,Badge,Text} from 'react-native-elements';
-import {View,ImageBackground,StyleSheet} from 'react-native';
-import { Card, Header,CardItem, Thumbnail, Left, Body, Right,Button,Icon} from 'native-base';
+import {TouchableOpacity,View,ImageBackground,StyleSheet} from 'react-native';
+import { Card, Header,CardItem, Thumbnail, Left,H3, Body, Right,Button,Icon} from 'native-base';
 import { connect } from 'react-redux';
 
 
@@ -32,25 +32,28 @@ class Promenade extends React.Component{
   render(){
     return(
 
-    <View>
-      <Card >
-            <CardItem >
-              <Left>
-                <Thumbnail square large source={{uri: this.props.avatar}} />
+    <TouchableOpacity onPress={this.voir}>
+      <Card  style={{flex: 0}}>
+            <CardItem cardBody >
+           
+                <Thumbnail style={{marginLeft:15,marginTop:10}}square large source={{uri: this.props.avatar}} />
                
-              </Left>
-              
-             <Body>
-             <Text>{this.props.username}</Text>
-                  <Text note>{this.props.dog1}</Text>
-             <Text>{this.props.adress}</Text>
-              </Body>
-              <Right>
-              <Button large transparent onPress={this.voir}>
+            
+             <View style={{marginLeft:10,marginTop:10}}>
+                  <View>
+                  
+                  <Text style={{fontWeight: 'bold'}}><Icon style={{color:'blue',fontSize:15}} name="person" />  {this.props.username}</Text>
+                  <Text style={{fontWeight: 'bold'}}><Icon style={{color:'blue',fontSize:15}} name="paw" />  {this.props.dog1}</Text>
+                  </View>
 
-              <Icon name="arrow-forward" />
-              <Text> Voir </Text></Button>
-              </Right>
+                  <View style={{marginTop:8}}>
+                    <Text><Icon style={{color:'blue',fontSize:15}} name="pin" /> {this.props.adress}</Text>
+                    <Text><Icon style={{color:'blue',fontSize:15}} name="warning" /> {this.props.warning}</Text>
+                  </View>
+          
+              </View>
+
+             
             </CardItem>
         
             <CardItem>
@@ -79,7 +82,7 @@ class Promenade extends React.Component{
 
     </View>
 
-  </View>
+  </TouchableOpacity>
 
     )
   }

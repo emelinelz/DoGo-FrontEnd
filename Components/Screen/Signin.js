@@ -43,7 +43,7 @@ class Signin extends React.Component {
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
           <Text style={styles.logoText}>Sign in</Text>
-            <TextInput onChangeText={(e) => this.setState({email: e})} placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
+            <TextInput onChangeText={(e) => this.setState({email: e})} placeholder="Email" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
             <TextInput onChangeText={(e) => this.setState({password: e})} placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
             <Text style={{color:'red', marginLeft:20}}>{this.state.errorMessage}</Text>
             <Button
@@ -51,12 +51,12 @@ class Signin extends React.Component {
               onPress={this.handleSumbit}              
               title="Login"
             />
-              <Button
+              {/* <Button
               buttonStyle={styles.fbLoginButton}
               onPress={() => this.onFbLoginPress()}
               title="Login with Facebook"
               color="#3897f1"
-            />
+            /> */}
             <Button
               buttonStyle={styles.fbLoginButton}
               onPress={() => this.props.navigation.navigate('Signup')}
@@ -72,19 +72,19 @@ class Signin extends React.Component {
   }
 
 
-  async onFbLoginPress() {
-    const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, {
-      permissions: ['public_profile', 'email'],
-    });
-    if (type === 'success') {
-      const response = await fetch(
-        `https://graph.facebook.com/me?access_token=${token}`);
-      Alert.alert(
-        'Logged in!',
-        `Hi ${(await response.json()).name}!`,
-      );
-    }
-  }
+  // async onFbLoginPress() {
+  //   const { type, token } = await Expo.Facebook.logInWithReadPermissionsAsync(appId, {
+  //     permissions: ['public_profile', 'email'],
+  //   });
+  //   if (type === 'success') {
+  //     const response = await fetch(
+  //       `https://graph.facebook.com/me?access_token=${token}`);
+  //     Alert.alert(
+  //       'Logged in!',
+  //       `Hi ${(await response.json()).name}!`,
+  //     );
+  //   }
+  // }
 }
 
 
