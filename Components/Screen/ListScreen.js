@@ -42,7 +42,7 @@ export default class ListScreen extends React.Component {
     })
 
     return (
-      <ImageBackground style={{flex:1}} 
+      <ImageBackground style={{flex:1}}
         backgroundColor='white'>
        <View style={{
         flex: 1,
@@ -51,13 +51,13 @@ export default class ListScreen extends React.Component {
         alignItems: 'stretch',
        }}>
       {promenade}
-        
-       
+
+
       <Button full bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
             <Icon name='camera'/>
             <Text>Prendre photo</Text>
           </Button>
-     
+
        </View>
 <Footer>
 <Button primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
@@ -65,8 +65,6 @@ export default class ListScreen extends React.Component {
             <Text>Add a promenade</Text>
           </Button>
 </Footer>
-      
       </ImageBackground>    );
   }
  }
- 
