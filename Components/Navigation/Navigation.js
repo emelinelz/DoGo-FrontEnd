@@ -9,17 +9,16 @@ import ListScreen from '../Screen/ListScreen';
 import Signup from '../Screen/Signup';
 import Signin from '../Screen/Signin';
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import { Icon } from 'native-base';
 
-=======
+
+
 import {Icon } from 'native-base';
 import MonCompte from '../Screen/MonCompte';
 import PromenadeScreen from '../Screen/PromenadeScreen';
 import Promenade from '../Promenade/Promenade';
 import MesPromenades from '../Screen/MesPromenades';
 import maptest from '../Screen/maptest'
->>>>>>> a289c2e84d09d54b235481c669c91926dd2ce6f8
+
 
 
 
@@ -81,7 +80,7 @@ maptest:maptest
   defaultNavigationOptions: {
     title: 'DoGo',
     headerStyle: { height: 60 },
-    
+
     headerTitleStyle: {
       flex: 1,
       textAlign: 'center',
