@@ -26,13 +26,13 @@ export default class ListScreen extends React.Component {
     });
     ctx.setState({dataLoad:true})
   }
-  
+
 
 
 
 
   render() {
-     
+
     var promenadeList = this.state.promenadeBD.map((item,i)=>{
       if(this.state.promenadeBD.length===0){
         return <Text>Pas de promenade</Text>
@@ -44,16 +44,16 @@ export default class ListScreen extends React.Component {
 
     return (
       <View style={{flex:1}} >
-        { this.state.dataLoad ? 
+        { this.state.dataLoad ?
              (
        <ScrollView style={{flex: 1, marginHorizontal:20}}>
-         
+
       {promenadeList}
-        
-     
+
+
        </ScrollView>
-       ) 
-        : 
+       )
+        :
         (   <View>
             <Spinner />
             <Spinner color='red' />
@@ -61,7 +61,7 @@ export default class ListScreen extends React.Component {
             <Spinner color='blue' />
           </View>)
           }
-          
+
       <Footer>
       <FooterTab>
       <Button transparent primary onPress={ () => this.props.navigation.navigate('Signin')}>
@@ -77,8 +77,6 @@ export default class ListScreen extends React.Component {
       </Footer>
       </View>
 
-   
+
          );}
   }
-
- 
