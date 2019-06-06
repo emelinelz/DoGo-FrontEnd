@@ -3,24 +3,23 @@ import MapView from 'react-native-maps';
 import {Marker} from 'react-native-maps';
 
 import {bottomDivider,Image,ListItem,Avatar,containerStyle,Badge,Text} from 'react-native-elements';
-import {Modal,View,ImageBackground,StyleSheet} from 'react-native';
+import {Modal,View,ImageBackground,Alert,StyleSheet} from 'react-native';
 import {Footer,FooterTab, Content,Spinner,Card, Header,CardItem, Thumbnail, Left, Body, Right,Button,Icon} from 'native-base';
 import { connect } from 'react-redux';
-
-
-
 
 
 class PromenadeScreen extends React.Component{
     constructor(){
         super()
         this.state={
-          participant:0,
-            promenadeSelected:{},
-            dataLoad : false
+          participant:[],
+          participantCount:0,
+          promenadeSelected:{},
+          dataLoad : false,
+          joint:false
         };
         
-        
+        this.jointClick=this.jointClick.bind(this)
     }
 
     async componentDidMount() {
@@ -31,22 +30,90 @@ class PromenadeScreen extends React.Component{
           return response.json();
         }).then(function(promenade){
           console.log(promenade.data)
+          if(promenade.data.participant.some(item => item.userId === ctx.props.user.userId) ==true){
+            ctx.setState({joint:true})
+          }
+          var participantCopy=promenade.data.participant
           ctx.setState({
               promenadeSelected: promenade.data,
-              participant:promenade.data.paricipant
+              participant:participantCopy,
+              participantCount:promenade.data.participant.length
             });
+           
         }).catch(function(error){
           console.error(error);
           
         });
         ctx.setState({dataLoad:true})
-    
+      }
+
+       jointClick= async ()=>{
+        if(this.props.user.token){
+          await this.setState({ joint : !this.state.joint })
+          var participantCopy=[...this.state.participant]
+          var participantAjouts = JSON.stringify({
+            promenadeId:this.state.promenadeSelected._id,
+            userId: this.props.user.userId,
+            username:this.props.user.username,
+            avatar:this.props.user.avatar
+          });
+          if(this.state.joint==true){ Alert.alert("Promenade ajoutée")
+          
+          participantCopy.push({
+            userId: this.props.user.userId,
+            username:this.props.user.name,
+            avatar:this.props.user.avatar
+          })
+          this.setState({participant:participantCopy,participantCount:this.state.participant+1})
+      
+          fetch(`${url}/add_participant`, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: participantAjouts
+          }
+          ).then(function(res, err){
+            return res.json()
+          }).then(function(data){
+            console.log(data, "-------------------");
+            var participantCopy=data.participant;
+            console.log(participantCopy, "participant copy --------");
+            console.log(data.participant.length,  "participant copy LENGTH --------");
+            ctx.setState({
+                participant:participantCopy,
+                participantCount:data.participant.length
+              });
+            
+          }).catch(function(err){
+            console.log(err)
+          })
+
+        }else{Alert.alert("A la prochaine fois..?")
+        this.setState({participant:participantCopy,participantCount:this.state.participant-1})
+
+
+        fetch(`${url}/delete_participant/${this.props.promenade}`, {
+        method: 'DELETE',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({userId: this.props.user.userId})
+      // body:`userId=${this.props.user.userId}`
+    })
+        .catch((error) => {
+        console.error(error);
+      });
+      
+          
+          }
+
+        }else{
+          this.props.navigation.navigate('Signin')
+        }
+        
+
       }
 
 
-    render(){
-        console.log('WHYYYYYYYYY',this.state.promenadeSelected.userId)
-       
+
+    render(){       
         
         return(
             <View style={{flex:1}}>
@@ -75,27 +142,30 @@ class PromenadeScreen extends React.Component{
 
         
        </CardItem>
-        <CardItem>
         
-            <Text>
+        <CardItem bordered>
+              <Body>
+              <Text>
             {this.state.promenadeSelected.description}
             </Text>
-        
-        </CardItem>
-
+              </Body>
+            </CardItem>
 
 
         <MapView mapType = "standard"
         style={{flex : 0.5}}
         initialRegion=
         {{
-        latitude: 48.8534,
-        longitude: 2.3488,
-        latitudeDelta: 0.0922,
-        longitudeDelta: 0.0421,
+        latitude: this.state.promenadeSelected.latitude,
+        longitude: this.state.promenadeSelected.longitude,
+        latitudeDelta: 0.0122,
+        longitudeDelta: 0.0121,
         }}
         >
-        <Marker coordinate={{latitude: 48.8534, longitude: 2.3488}}
+        <Marker 
+        title="Ici , "
+        description="Promenade proposée"
+        image={require('../../assets/Images/projet_emeline.png')} coordinate={{latitude: this.state.promenadeSelected.latitude, longitude: this.state.promenadeSelected.longitude}}
         />
 
         </MapView>
@@ -109,7 +179,7 @@ class PromenadeScreen extends React.Component{
         <Body>
             <Button transparent>
             <Icon active name="people" />
-            <Text>{this.state.promenadeSelected.participant}participants</Text>
+            <Text>{this.state.promenadeSelected.participant.length}participants</Text>
             </Button>
         </Body>
         <Right>
@@ -125,11 +195,22 @@ class PromenadeScreen extends React.Component{
     
 
 <View>
-    <Button block bordered primary onPress={ () => this.setState(participant=this.state.participant+1)}>
+
+  {(this.state.promenadeSelected.userId._id==this.props.user.userId)?
+    <Button block bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
+    <Icon active name='people'/>
+    <Text>Voir les participants</Text>
+    </Button>
+  :
+  
+    <Button block bordered primary 
+     onPress={this.jointClick}
+    style={this.state.joint ? styles.activeButton : styles.inactiveButton} 
+    >
     <Icon name='arrow-forward' />
     <Text> I Joint</Text>
     </Button>
-
+  }
 
     <Button block bordered primary onPress={ () => this.props.navigation.navigate('CameraScreen')}>
     <Icon active name='camera'/>
@@ -166,8 +247,23 @@ class PromenadeScreen extends React.Component{
     }
 }
   
+
+const styles = StyleSheet.create({
+  activeButton:{
+    backgroundColor:'blue',
+  },
+  inactiveButton:{
+    backgroundColor:'rgba(0,0,0,0)',
+  },
+  button:{
+    width:200,
+    justifyContent:'center',
+  },
+})
+
 function mapStateToProps(state) {
-    return { promenade: state.promenade }
+    return { promenade: state.promenade,
+      user: state.userData }
   }
   
   export default connect(

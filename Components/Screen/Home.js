@@ -4,6 +4,7 @@ import {
  ImageBackground,
  StyleSheet
 } from 'react-native';
+import { connect } from 'react-redux';
 
 import {
   Container,
@@ -36,13 +37,14 @@ import { Ionicons } from '@expo/vector-icons';
 
 
 
-export default class Home extends React.Component {
+class Home extends React.Component {
 
   constructor() {
           super();
           this.state = {
               fontLoaded: false
           };
+          this.onClick=this.onClick.bind(this)
       }
 
   async componentWillMount() {
@@ -53,7 +55,15 @@ export default class Home extends React.Component {
     this.setState({ fontLoaded: true });
 }
 
+onClick=()=>{
+  if(this.props.user.token){
+    this.props.navigation.navigate('AddPromenade')
+  }else{
+    this.props.navigation.navigate('Signin')
+  }
+  
 
+}
   // Traitement concernant le Header de la navigation : il masque le header
     static navigationOptions = {
     headerTitle: "DoGoHome",
@@ -66,7 +76,7 @@ export default class Home extends React.Component {
     ),
   };
  render() {
-   console.log("fontLoaded",this.state.fontLoaded);
+  //  console.log("fontLoaded",this.state.fontLoaded);
    return (
 
      <ImageBackground style={{flex:1}} source={require("../../assets/Images/chiens.jpeg")}>
@@ -113,7 +123,7 @@ export default class Home extends React.Component {
 
 </Button>
 
-<Button bordered success style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={() => this.props.navigation.navigate('Signin')}>
+<Button bordered success style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={this.onClick}>
 <Text >Proposer une promenade</Text>
 </Button>
 
@@ -135,3 +145,12 @@ export default class Home extends React.Component {
     );
  }
 }
+
+function mapStateToProps(state) {
+  return { user: state.userData }
+}
+
+export default connect(
+    mapStateToProps,
+    null
+)(Home);

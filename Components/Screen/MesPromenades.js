@@ -23,7 +23,7 @@ class MesPromenades extends React.Component{
         .then(function(response){
           return response.json();
         }).then(function(promenade){
-          console.log(promenade.data)
+          // console.log(promenade.data)
           ctx.setState({promenadeBD: promenade.data});
         }).catch(function(error){
           console.error(error);
@@ -37,7 +37,7 @@ class MesPromenades extends React.Component{
             if(this.state.promenadeBD=null){
               return <Text>Pas de promenade</Text>
             }else{
-              return <Promenade id={item._id}cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} dog1={item.userId.dog1}avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} navigation={this.props.navigation}/>
+              return <Promenade warning={item.warning}id={item._id}cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} dog1={item.userId.dog1}avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} navigation={this.props.navigation}/>
       
             }
         })
@@ -60,7 +60,7 @@ class MesPromenades extends React.Component{
                     
                 <Footer>
                 <FooterTab>
-                <Button transparent primary onPress={ () => this.props.navigation.navigate('Signin')}>
+                <Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
                             <Icon name='add'/>
                             <Text>Add a promenade</Text>
                           </Button>

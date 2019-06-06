@@ -12,13 +12,25 @@ class AddPromenade extends Component {
     adress:'',
     description:'',
     warning:'',
-    userId:''
+    userId:'',
+    lat:'',
+    lng:''
   };
     this.setDate = this.setDate.bind(this);
     duree: undefined
 
-    this.AddaPromenade=this.AddaPromenade.bind(this)
+    this.AddaPromenade=this.AddaPromenade.bind(this);
+    this.setAdress=this.setAdress.bind(this)
   }
+
+  setAdress=(data,details)=>{
+    this.setState({
+      adress:data.description,
+      lat:details.geometry.location.lat,
+      lng:details.geometry.location.lng
+    })
+    
+  };
 
   AddaPromenade(){
     console.log('Add a promenade...');
@@ -28,7 +40,9 @@ class AddPromenade extends Component {
       date: this.state.chosenDate.toString().substr(4, 12),
       duree: this.state.duree,
       description:this.state.description,
-      warning:this.state.warning
+      warning:this.state.warning,
+      lat:this.state.lat,
+      lng:this.state.lng
     });
 
     // Since we are going to fetch with the ES5 syntax, we need to store this (an EST5 function has got its own this)
@@ -93,9 +107,9 @@ class AddPromenade extends Component {
           listViewDisplayed="auto" // true/false/undefined
           fetchDetails={true}
           renderDescription={row => row.description} // custom description render
-          onPress={(data, details = null) => { this.setState({adress:data.description})
-            console.log(data);
-            console.log(details);
+          onPress={(data, details = null) => {this.setAdress(data,details)
+            console.log('DATA____-----',data);
+            console.log('DETAILS------',details.geometry.location);
           }}
           getDefaultValue={() => {
             return ''; // text input default value

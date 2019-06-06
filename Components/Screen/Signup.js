@@ -37,11 +37,10 @@ constructor(){
       aspect: [4, 3],
     });
 
-    console.log(result);
+    // console.log(result);
 
     if (!result.cancelled) {
       this.setState({ image: result.uri });
-      console.log(this.state.image)
       var data = new FormData();
 
       data.append('avatar', {
@@ -58,7 +57,6 @@ constructor(){
       }).then(function(res, err){
         return res.json()
       }).then(function(data){
-        console.log(data);
         ctx.setState({avatar:data})
        
       }).catch(function(err){

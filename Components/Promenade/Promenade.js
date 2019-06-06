@@ -19,22 +19,18 @@ class Promenade extends React.Component{
   
   voir= async()=>{
    
-    console.log('AHAHAHAHAHAH',this.props.id)
     await this.props.promenadeSelected(this.props.id);
-    
+  
     this.props.navigation.navigate('PromenadeScreen');
     // this.props.onPress;
   }
   
-  
-  
-
   render(){
     return(
 
     <TouchableOpacity onPress={this.voir}>
-      <Card  style={{flex: 0}}>
-            <CardItem cardBody >
+      <Card  style={this.props.user.userId==this.props.userId? styles.mypromenade:styles.promenade}>
+            <CardItem style={this.props.user.userId==this.props.userId? styles.mypromenade:styles.promenade}cardBody >
            
                 <Thumbnail style={{marginLeft:15,marginTop:10}}square large source={{uri: this.props.avatar}} />
                
@@ -56,7 +52,7 @@ class Promenade extends React.Component{
              
             </CardItem>
         
-            <CardItem>
+            <CardItem style={this.props.user.userId==this.props.userId? styles.mypromenade:styles.promenade}>
               <Left>
                 <Button transparent>
                   <Icon active name="calendar" />
@@ -66,7 +62,7 @@ class Promenade extends React.Component{
               <Body>
                 <Button transparent>
                   <Icon active name="people" />
-                  <Text>{this.props.participant}participants</Text>
+                  <Text>{this.props.participant.length}participants</Text>
                 </Button>
               </Body>
               <Right>
@@ -77,10 +73,6 @@ class Promenade extends React.Component{
               </Right>
             </CardItem>
           </Card>
-      <View>
-
-
-    </View>
 
   </TouchableOpacity>
 
@@ -93,6 +85,14 @@ const styles = StyleSheet.create({
    flexDirection:'column',
    padding:10,
    paddingTop:5,
+ },
+ mypromenade:{
+   backgroundColor:'#b8e994',
+   flex:0
+ },
+ promenade:{
+  backgroundColor:'#fad390',
+   flex:0
  },
  ratingText:{
    color: 'grey',
@@ -125,8 +125,10 @@ function mapDispatchToProps(dispatch) {
     }
   }
 }
-
+function mapStateToProps(state) {
+  return { user: state.userData }
+}
 export default connect(
-    null,
+  mapStateToProps,
     mapDispatchToProps
 )(Promenade);

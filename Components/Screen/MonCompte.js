@@ -4,6 +4,37 @@ import { connect } from 'react-redux';
 import {Icon,Thumbnail,Form,Textarea,Footer,FooterTab,Content,Button,Text,View,Container} from 'native-base'
 
 class MonCompte extends React.Component {
+  constructor(){
+    super()
+
+
+  }
+
+  // async componentDidMount() {
+  //   var ctx = this;
+    
+  //   await fetch(`${url}/participe_promenade?_id=${this.props.user.userId}`)
+  //   .then(function(response){
+  //     return response.json();
+  //   }).then(function(promenade){
+  //     console.log(promenade.data)
+  //     if(promenade.data.participant.some(item => item.userId === ctx.props.user.userId) ==true){
+  //       ctx.setState({joint:true})
+  //     }
+  //     var participantCopy=promenade.data.participant
+  //     ctx.setState({
+  //         promenadeSelected: promenade.data,
+  //         participant:participantCopy,
+  //         participantCount:promenade.data.participant.length
+  //       });
+       
+  //   }).catch(function(error){
+  //     console.error(error);
+      
+  //   });
+  //   ctx.setState({dataLoad:true})
+  // }
+
 
 
  render() {
@@ -41,9 +72,9 @@ class MonCompte extends React.Component {
 
 <Footer>
 <FooterTab>
-<Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
-            <Icon name='add'/>
-            <Text>Ajouter Promenades</Text>
+<Button transparent primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
+            <Icon name='menu'/>
+            <Text>Voir la list </Text>
           </Button>
           <Button transparent primary onPress={ () => this.props.navigation.navigate('MesPromenades')}>
             <Icon name='paw'/>

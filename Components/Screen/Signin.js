@@ -22,7 +22,7 @@ class Signin extends React.Component {
     fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
     .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
     ).then(data => {
-      console.log(data)
+      // console.log(data)
         data.isUserExist
           ? (
               console.log("ok"),

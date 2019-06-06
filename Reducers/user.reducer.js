@@ -1,6 +1,6 @@
 export default function (user={},action){
   if (action.type==='setUser') {
-    console.log('jesuis danmonREDUCER',action);
+    // console.log('jesuis danmonREDUCER',action);
       var userCopy= {...user,
         userId:action.userId,
         name: action.name,

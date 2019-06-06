@@ -14,7 +14,7 @@
 // }
 
 export default function(promenade = {}, action) {
-  console.log('jesuis danmonREDUCER',action);
+  // console.log('jesuis danmonREDUCER',action);
   if(action.type == 'selectPromenade') {
       return action.promenadeId
       

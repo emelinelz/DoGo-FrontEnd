@@ -3,8 +3,9 @@ import { ImageBackground, RefreshControl,AppRegistry, View,ScrollView} from 'rea
 import Promenade from '../Promenade/Promenade';
 import {Header,Button,Content,Right,Spinner,Icon,Text,Footer,FooterTab} from 'native-base';
 import url from '../../config';
+import { connect } from 'react-redux';
 
-export default class ListScreen extends React.Component {
+class ListScreen extends React.Component {
   constructor(){
     super()
     this.state={
@@ -12,12 +13,13 @@ export default class ListScreen extends React.Component {
       dataLoad : false,
       isRefreshing:false
     };
+    this.onClick=this.onClick.bind(this)
+
   }
 
   onRefresh() {
    
        this.setState({isRefreshing: true});
-       console.log("Refreshing");
        setTimeout(() => {
          
          this.setState({isRefreshing: false});
@@ -28,7 +30,7 @@ export default class ListScreen extends React.Component {
        .then(function(response){
          return response.json();
        }).then(function(promenade){
-         console.log(promenade.data)
+        //  console.log(promenade.data)
          ctx.setState({promenadeBD: promenade.data});
        }).catch(function(error){
          console.error(error);
@@ -45,7 +47,7 @@ export default class ListScreen extends React.Component {
     .then(function(response){
       return response.json();
     }).then(function(promenade){
-      console.log(promenade.data)
+      // console.log(promenade.data)
       ctx.setState({promenadeBD: promenade.data});
     }).catch(function(error){
       console.error(error);
@@ -54,17 +56,24 @@ export default class ListScreen extends React.Component {
   }
   
 
-
+  onClick=()=>{
+    if(this.props.user.token){
+      this.props.navigation.navigate('AddPromenade')
+    }else{
+      this.props.navigation.navigate('Signin')
+    }
+  }
 
 
   render() {
      
-    var promenadeList = this.state.promenadeBD.map((item,i)=>{
+    var promenadeList =[].concat(this.state.promenadeBD)
+    .sort((a,b)=>a.distance>b.distance)
+    .map((item,i)=>{
       if(this.state.promenadeBD.length===0){
         return <Text>Pas de promenade</Text>
       }else{
-        return <Promenade id={item._id}cp={item.cp}description={item.description}adress={item.adress}key={i} username={item.userId.username} dog1={item.userId.dog1}avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} warning={item.warning}navigation={this.props.navigation}/>
-
+        return <Promenade id={item._id}userId={item.userId._id}description={item.description}adress={item.adress}key={i} username={item.userId.username} dog1={item.userId.dog1}avatar={item.userId.avatar} date={item.date} duree={item.duree} distance={item.distance} participant={item.participant} warning={item.warning}navigation={this.props.navigation}/>
       }
     })
 
@@ -73,19 +82,15 @@ export default class ListScreen extends React.Component {
         { this.state.dataLoad ? 
              (
        <ScrollView style={{flex: 1, marginHorizontal:20}}
-       refreshControl={  
-                         <RefreshControl
+       refreshControl={  <RefreshControl
                            refreshing={this.state.isRefreshing}  
                            onRefresh={this.onRefresh.bind(this)}  
                            tintColor='white'
                            title= {this.state.isRefreshing? 'loading....':'loading'}
                          />
-                       }
->
+                       }>
          
       {promenadeList}
-        
-     
        </ScrollView>
 
        
@@ -101,7 +106,7 @@ export default class ListScreen extends React.Component {
           
       <Footer>
       <FooterTab>
-      <Button transparent primary onPress={ () => this.props.navigation.navigate('Signin')}>
+      <Button transparent primary onPress={this.onClick}>
                   <Icon name='add'/>
                   <Text>Add a promenade</Text>
                 </Button>
@@ -114,8 +119,16 @@ export default class ListScreen extends React.Component {
       </Footer>
       </View>
 
-   
-         );}
-  }
+      );
+    }
+}
 
  
+  function mapStateToProps(state) {
+    return { user: state.userData }
+  }
+  
+  export default connect(
+      mapStateToProps,
+      null
+  )(ListScreen);
