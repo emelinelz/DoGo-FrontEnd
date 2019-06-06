@@ -1,99 +1,81 @@
 import React from 'react';
+import MapView from 'react-native-maps';
+import {Marker} from 'react-native-maps';
+
 import {bottomDivider,Image,ListItem,Avatar,containerStyle,Badge,Text} from 'react-native-elements';
-import {Modal,View,ImageBackground,StyleSheet} from 'react-native';
-import {Button,Icon} from 'native-base'
+import {View,ImageBackground,StyleSheet} from 'react-native';
+import { Card, Header,CardItem, Thumbnail, Left, Body, Right,Button,Icon} from 'native-base';
+import { connect } from 'react-redux';
 
 
 
-export default class Promenade extends React.Component{
+class Promenade extends React.Component{
   constructor(){
     super()
-    this.setModalVisible=this.setModalVisible.bind(this)
-    this.setModalInvisible=this.setModalInvisible.bind(this)
-      this.state={
-        modalVisible:false,
-
-    }
+    this.voir=this.voir.bind(this)
+   
+    
   }
-
-  setModalVisible(){
-    this.setState({modalVisible:true})
+  
+  voir= async()=>{
+   
+    console.log('AHAHAHAHAHAH',this.props.id)
+    await this.props.promenadeSelected(this.props.id);
+    
+    this.props.navigation.navigate('PromenadeScreen');
+    // this.props.onPress;
   }
-
-  setModalInvisible(){
-    this.setState({modalVisible:false})
-  }
+  
+  
+  
 
   render(){
     return(
 
     <View>
-      <ListItem
-      bottomDivider={true}
-      onPress={this.setModalVisible}
-      leftAvatar={{ source: { uri: this.props.img } }}
-        title={
-          <View>
-          <Text style={styles.picNumber}>{this.props.username}</Text>
-          </View>
-        }
-        subtitle={
-            <View style={styles.subtitle}>
-              <Text style={styles.ratingText}> {this.props.adress}</Text>
-              <Text style={styles.ratingText}> {this.props.cp}</Text>
+      <Card >
+            <CardItem >
+              <Left>
+                <Thumbnail square large source={{uri: this.props.avatar}} />
+               
+              </Left>
+              
+             <Body>
+             <Text>{this.props.username}</Text>
+                  <Text note>{this.props.dog1}</Text>
+             <Text>{this.props.adress}</Text>
+              </Body>
+              <Right>
+              <Button large transparent onPress={this.voir}>
 
-              <Text style={styles.ratingText}> date:{this.props.date}</Text>
-              <Text style={styles.ratingText}> duree:{this.props.duree}</Text>
-              <Text style={styles.ratingText}> {this.props.desc}</Text>
-
-            </View>
-
-          }
-          />
-
+              <Icon name="arrow-forward" />
+              <Text> Voir </Text></Button>
+              </Right>
+            </CardItem>
+        
+            <CardItem>
+              <Left>
+                <Button transparent>
+                  <Icon active name="calendar" />
+                  <Text>{this.props.date}</Text>
+                </Button>
+              </Left>
+              <Body>
+                <Button transparent>
+                  <Icon active name="people" />
+                  <Text>{this.props.participant}participants</Text>
+                </Button>
+              </Body>
+              <Right>
+              <Button transparent>
+                  <Icon active name="navigate" />
+                  <Text>{this.props.distance}km</Text>
+                </Button>
+              </Right>
+            </CardItem>
+          </Card>
       <View>
-          <Modal
-                animationType="slide"
-                transparent={false}
-                visible={this.state.modalVisible}
-                presentationStyle='pageSheet'
-            >
-        <View style={{flex:1}}>
-          <Image style={{ width: 500, height: 400 }} source={{uri:this.props.img}}/>
 
-
-<Button full bordered primary onPress={this.setModalInvisible}>
-            <Icon name='paw'/>
-            <Text>Go Back</Text>
-          </Button>
-
-          <Button full bordered primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
-            <Icon name='paw'/>
-            <Text>Joint</Text>
-          </Button>
-          <Button full bordered primary onPress={ () => this.props.navigation.navigate('Camera')}>
-            <Icon name='camera'/>
-            <Text>Prendre photo</Text>
-          </Button>
-
-          
-
-          <Text stylte={styles.title}>
-          {this.props.username}
-          </Text>
-          <View style={styles.descDisplay}>
-            <Text style={{color: '#FFFFFF'}}>{this.props.date}</Text>
-         
-            <Text style={{color: '#FFFFFF'}}>{this.props.duree}</Text>
-          </View>
-
-
-          </View>
-
-
-       
-
-      </Modal>
 
     </View>
 
@@ -126,3 +108,22 @@ const styles = StyleSheet.create({
    flexDirection: 'row',
  },
 });
+
+
+function mapDispatchToProps(dispatch) {
+  return {
+    promenadeSelected: function(idPromenade) {
+        dispatch({
+          type: 'selectPromenade',
+          promenadeId:idPromenade
+          
+        })
+       
+    }
+  }
+}
+
+export default connect(
+    null,
+    mapDispatchToProps
+)(Promenade);

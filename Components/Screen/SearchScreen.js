@@ -154,7 +154,10 @@ _getLocationAsync = async () => {
                   </Button>
                 </FooterTab>
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> f96ef65dc2c2ffb6967249c71e501e7ca7eb97d3
 
  </Content>
 
@@ -163,3 +166,22 @@ _getLocationAsync = async () => {
      );
 }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin:50
+  },
+  title: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginTop:25,
+    marginBottom:10
+  },
+  button: {
+    fontSize:80,
+    textAlign:'center',
+    backgroundColor: 'white',
+    width:300
+  },
+  
+});
