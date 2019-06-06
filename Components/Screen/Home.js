@@ -39,6 +39,10 @@ import { Ionicons } from '@expo/vector-icons';
 
 class Home extends React.Component {
 
+  static navigationOptions = {
+      drawerLabel: 'Home',
+    };
+
   constructor() {
           super();
           this.state = {
@@ -67,13 +71,7 @@ onClick=()=>{
   // Traitement concernant le Header de la navigation : il masque le header
     static navigationOptions = {
     headerTitle: "DoGoHome",
-    headerRight: (
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="info"
-        color="#26de81"
-      />
-    ),
+
   };
  render() {
   //  console.log("fontLoaded",this.state.fontLoaded);
@@ -108,8 +106,6 @@ onClick=()=>{
 
 
 
-        <Text h1 style={{color: "#FFFFFF", fontSize: "20px", fontWeight: 'bold', textAlign: 'center', marginTop: 60}}> Des compagnons de promenade </Text>
-        <Text h1 style={{color: "#FFFFFF", fontSize: "20px", fontWeight: 'bold', textAlign: 'center'}}> autour de vous </Text>
 
 
 
@@ -118,6 +114,46 @@ onClick=()=>{
 
 
 <View >
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Signin')}>
+<Text >Signin</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('MyAccount')}>
+<Text >MyAccount</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('MyAccountEdit')}>
+<Text >MyAccountEdit</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Account')}>
+<Text >Account</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('NextPromenade')}>
+<Text >NextPromenade</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('OldPromenade')}>
+<Text >OldPromenade</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Alert')}>
+<Text >Alert</Text>
+</Button>
+
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('AddAlert')}>
+<Text >AddAlert</Text>
+</Button>
+
+
+
+
+
+
+
+
 <Button success style={{marginHorizontal:85, marginBottom:10, position: 'center'}} onPress={() => this.props.navigation.navigate('SearchScreen')}>
 <Text >Trouver une promenade</Text>
 
