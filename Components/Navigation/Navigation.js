@@ -1,8 +1,5 @@
 import React from 'react';
 
-import {Button,createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems, } from 'react-navigation';
-import {Platform} from 'react-native';
-
 import {createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems, } from 'react-navigation';
 import {Platform, StyleSheet} from 'react-native'
 
@@ -49,7 +46,7 @@ var StackNavigator = createStackNavigator({
    SearchScreen: SearchScreen,
    ListScreen: ListScreen,
    AddPromenade: AddPromenade,
-   Lien4: Lien4,
+
    Signin: Signin,
    MyAccount : MyAccount,
    Account: Account,
