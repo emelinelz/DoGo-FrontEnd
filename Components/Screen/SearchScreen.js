@@ -18,7 +18,7 @@ constructor(){
        duree:1,
        puppyButton:false,
        onlygirlsButton:false,
-       time: " ",
+       time: null,
        chosenDate: new Date()},
        this.setDate = this.setDate.bind(this);
 
@@ -63,7 +63,7 @@ _getLocationAsync = async () => {
  render(){
 
    return (
-=======
+
      <ScrollView>
 
        <Header style={{paddingTop: 0, backgroundColor:'#ffff'}} searchBar rounded >
@@ -100,13 +100,15 @@ _getLocationAsync = async () => {
       <Content>
 
         <View style={{flexDirection: 'column', border:10,marginLeft:30, marginTop:30,backgroundColor:'white', color:'black', justifyContent:'center',aligntext:'center', verticalAlign:'bottom'}}>
+
+              <Text> Durée :</Text>
+
               <TouchableOpacity
                 onPress={() => this.TimePicker.open()}
                 >
-                <Text>Duree:  </Text>
-
+                <Text> {this.state.time == null ? 'Choisir la durée': this.state.time }</Text>
               </TouchableOpacity>
-              <Text>{this.state.time}</Text>
+
               <TimePicker
                 ref={ref => {
                   this.TimePicker = ref;
@@ -125,8 +127,8 @@ _getLocationAsync = async () => {
             mode="date"
             placeholder="Date"
             format="DD/MM/YYYY"
-            minDate="2016/05/01"
-            maxDate="2016/06/01"
+            minDate=" / / "
+            maxDate=" / / "
             confirmBtnText="Confirmer"
             cancelBtnText="Annuler"
             showIcon={false}
@@ -156,7 +158,7 @@ _getLocationAsync = async () => {
 
                   </Button>
         </FooterTab>
->>>>>>> greatMap
+
 
           </Content>
 

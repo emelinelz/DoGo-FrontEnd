@@ -26,11 +26,6 @@ export default class ListScreen extends React.Component {
     });
     ctx.setState({dataLoad:true})
   }
-
-
-
-
-
   render() {
 
     var promenadeList = this.state.promenadeBD.map((item,i)=>{
@@ -49,8 +44,6 @@ export default class ListScreen extends React.Component {
        <ScrollView style={{flex: 1, marginHorizontal:20}}>
 
       {promenadeList}
-
-
        </ScrollView>
        )
         :

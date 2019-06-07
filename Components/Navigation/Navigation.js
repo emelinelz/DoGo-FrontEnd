@@ -21,9 +21,7 @@ import AddAlert from '../Screen/AddAlert';
 // Manque page inscription faite chez Ai et Produit faite aussi chez Ai en modele
 
 import { Ionicons } from '@expo/vector-icons';
-<<<<<<< HEAD
-import { Icon } from 'native-base';
-=======
+
 
 
 
@@ -32,8 +30,7 @@ import MonCompte from '../Screen/MonCompte';
 import PromenadeScreen from '../Screen/PromenadeScreen';
 import Promenade from '../Promenade/Promenade';
 import MesPromenades from '../Screen/MesPromenades';
-import maptest from '../Screen/maptest'
->>>>>>> greatMap
+import maptest from '../Screen/maptest';
 
 var iconAccount = {
   color: '#fd9644',

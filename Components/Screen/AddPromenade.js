@@ -47,15 +47,7 @@ class AddPromenade extends Component {
     }).catch(function(err){
       console.log(err)
     })
-
-
-
   }
-
-
-
-
-
   dureeChange(value: string) {
     this.setState({
       duree: value
@@ -66,7 +58,6 @@ class AddPromenade extends Component {
       warning:value
     })
   }
-
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
   }
@@ -90,12 +81,12 @@ class AddPromenade extends Component {
             language: 'en', // language of the results
             types: '(cities)' // default: 'geocode'
           }}
-  placeholder='Enter Location'
-  minLength={2}
-  autoFocus={false}
-  returnKeyType={'default'}
-  fetchDetails={true}
-  styles={{
+        placeholder='Enter Location'
+        minLength={2}
+        autoFocus={false}
+        returnKeyType={'default'}
+        fetchDetails={true}
+        styles={{
     textInputContainer: {
       backgroundColor: 'rgba(0,0,0,0)',
       borderTopWidth: 0,
@@ -138,16 +129,13 @@ class AddPromenade extends Component {
             disabled={false}
             />
           </Item>
-         
              {/* <Text>
               Date: {this.state.chosenDate.toString().substr(4, 12)}
             </Text> */}
-
-
             <Text style={styles.title}>
               Durée approximative:
             </Text>
-          
+
             <Item picker>
               <Picker
                 mode="dropdown"
@@ -164,13 +152,13 @@ class AddPromenade extends Component {
                 <Picker.Item label=">= 2h" value=">= 2h" />
               </Picker>
             </Item>
-        
-            
+
+
             <Text style={styles.title}>
               Description:
             </Text>
             <Item>
-            
+
             <Input onChangeText={(e) => this.setState({description: e})} placeholder="blabla blabla" />
             </Item>
             <Text style={styles.title}>
@@ -189,15 +177,15 @@ class AddPromenade extends Component {
             >
               <Picker.Item label="ladies only" value="ladies only" />
               <Picker.Item label="puppy" value="puppy" />
-              
+
             </Picker>
           </Form>
-          
 
-            
+
+
         </Content>
 
-       
+
 
         <Footer>
           <FooterTab>
@@ -228,7 +216,7 @@ const styles = StyleSheet.create({
     color: 'white',
     width:200
   },
-  
+
 });
 
 function mapStateToProps(state) {
