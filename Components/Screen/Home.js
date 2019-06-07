@@ -2,7 +2,8 @@ import React from 'react';
 import {
  View,
  ImageBackground,
- StyleSheet
+ StyleSheet,
+ Image
 } from 'react-native';
 
 import {
@@ -64,13 +65,16 @@ export default class Home extends React.Component {
     headerRight: (
       <Ionicons onPress={() => this.props.navigation.navigate('Mon compte')} name='ios-person' size={25} color='#fd9644' style={{marginRight: 20}}/>
     ),
+    headerTitle: (
+      <Image source={require("../../assets/Images/dogo.png" )}  style={{ width: 84, height: 33 }}/>
+  )
   };
 
  render() {
    console.log("fontLoaded",this.state.fontLoaded);
    return (
 
-     <ImageBackground style={{flex:1}} source={require("../../assets/Images/chiens.jpeg")}>
+     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/chiens7.jpeg")}>
 
 
       <View style={{flex:1, alignItems:'center', }}>
@@ -140,7 +144,6 @@ export default class Home extends React.Component {
 <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('AddAlert')}>
 <Text >AddAlert</Text>
 </Button>
-
 
 
 
