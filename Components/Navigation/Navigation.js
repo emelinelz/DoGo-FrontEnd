@@ -46,7 +46,7 @@ var StackNavigator = createStackNavigator({
    SearchScreen: SearchScreen,
    ListScreen: ListScreen,
    AddPromenade: AddPromenade,
-
+  
    Signin: Signin,
    MyAccount : MyAccount,
    Account: Account,

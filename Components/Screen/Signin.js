@@ -1,6 +1,8 @@
 import React from 'react';
-import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, TouchableWithoutFeedback,
-  Alert, KeyboardAvoidingView, StyleSheet} from 'react-native';
+import { ImageBackground, AppRegistry, View, Keyboard,  TextInput, TouchableWithoutFeedback,
+  Alert, KeyboardAvoidingView, StyleSheet, Button, Text, Image} from 'react-native';
+{// import { Button, Text } from 'native-base';
+}
   import { connect } from 'react-redux';
   import url from '../../config';
 
@@ -18,7 +20,7 @@ class Signin extends React.Component {
   handleSumbit = () => {
 
     console.log('signin from front handled...');
-  
+
     fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
     .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
     ).then(data => {
@@ -42,28 +44,41 @@ class Signin extends React.Component {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View style={styles.loginScreenContainer}>
           <View style={styles.loginFormView}>
-          <Text style={styles.logoText}>Sign in</Text>
+          <Image source={require("../../assets/Images/dogo.png" )}  style={styles.logo}/>
+
+
+
+
+
+
+
+          <Text style={styles.logoText}>Connexion</Text>
             <TextInput onChangeText={(e) => this.setState({email: e})} placeholder="Username" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} />
             <TextInput onChangeText={(e) => this.setState({password: e})} placeholder="Password" placeholderColor="#c4c3cb" style={styles.loginFormTextInput} secureTextEntry={true}/>
             <Text style={{color:'red', marginLeft:20}}>{this.state.errorMessage}</Text>
+
+            {//
+            // <Button info buttonStyle={styles.loginButton}><Text> Valider </Text></Button>
+            //
+            // <Text>Pas encore de compte ?</Text>
+            // <Button info buttonStyle={styles.loginButton}><Text> Inscription </Text></Button>
+            }
+
             <Button
               buttonStyle={styles.loginButton}
-              onPress={this.handleSumbit}              
-              title="Login"
+              onPress={this.handleSumbit}
+              title="Valider"
             />
-              <Button
-              buttonStyle={styles.fbLoginButton}
-              onPress={() => this.onFbLoginPress()}
-              title="Login with Facebook"
-              color="#3897f1"
-            />
+
             <Button
               buttonStyle={styles.fbLoginButton}
               onPress={() => this.props.navigation.navigate('Signup')}
-              title="Pas de compte? Sign up"
+              title="Pas de compte? Inscrivez-vous !"
               color="#3897f1"
             />
-          
+
+
+
           </View>
         </View>
       </TouchableWithoutFeedback>
@@ -98,9 +113,17 @@ const styles=  StyleSheet.create({
       },
       logoText: {
       fontSize: 30,
-      fontWeight: "800",
-      marginTop: 150,
-      marginBottom: 30,
+      fontWeight: "200",
+      marginTop: 50,
+      marginBottom: 20,
+      textAlign: 'center',
+      color: "#778ca3"
+      },
+      logo: {
+      height: 83,
+      width: 210,
+      marginTop: 50,
+      marginLeft: 83,
       textAlign: 'center',
       },
       loginFormView: {
@@ -118,19 +141,14 @@ const styles=  StyleSheet.create({
        marginRight: 15,
        marginTop: 5,
        marginBottom: 5,
-
        },
       loginButton: {
       backgroundColor: '#3897f1',
       borderRadius: 5,
+      margin: 20,
       height: 45,
        marginTop: 10,
        },
-        fbLoginButton: {
-          height: 45,
-          marginTop: 10,
-          backgroundColor: 'transparent',
-        },
 })
 
 function mapDispatchToProps(dispatch) {
