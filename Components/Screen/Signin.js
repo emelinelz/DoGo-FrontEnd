@@ -18,7 +18,8 @@ class Signin extends React.Component {
   handleSumbit = () => {
 
     console.log('signin from front handled...');
-  
+    console.log("this.state.email",this.state.email);
+    console.log("this.state.password",this.state.password);
     fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
     .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
     ).then(data => {
@@ -48,7 +49,7 @@ class Signin extends React.Component {
             <Text style={{color:'red', marginLeft:20}}>{this.state.errorMessage}</Text>
             <Button
               buttonStyle={styles.loginButton}
-              onPress={this.handleSumbit}              
+              onPress={this.handleSumbit}
               title="Login"
             />
               <Button
@@ -63,7 +64,7 @@ class Signin extends React.Component {
               title="Pas de compte? Sign up"
               color="#3897f1"
             />
-          
+
           </View>
         </View>
       </TouchableWithoutFeedback>
