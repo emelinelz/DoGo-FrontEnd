@@ -1,5 +1,5 @@
 import React from 'react';
-import { ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, TouchableWithoutFeedback,
+import { AsyncStorage,ImageBackground, AppRegistry, View,Button,Keyboard, Text,  TextInput, TouchableWithoutFeedback,
   Alert, KeyboardAvoidingView, StyleSheet} from 'react-native';
   import { connect } from 'react-redux';
   import url from '../../config';
@@ -11,12 +11,31 @@ class Signin extends React.Component {
     this.state = {
       email: '',
       password: '',
-      errorMessage: ''
+      errorMessage: '',
     }
   }
 
-  handleSumbit = () => {
+  // componentWillMount(){
+  //   AsyncStorage.getItem("user", 
+  //     function(error, data){
+  //       // console.log('LOCAL STORAGEEEEE',data);
+  //       if(data){
+  //         var userData = JSON.parse(data)
+  //         fetch(`${url}/signin?email=${userData.email}&password=${userData.password}`)
+  //   .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
+  //   ).then(data => {
+  //     console.log('dataaaaaaaaaaaaa-----------',data)
+       
+  //             console.log("ok")
+  //             this.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
+  //             this.props.navigation.navigate('MonCompte')
 
+         
+  // })}})}
+
+  handleSumbit = () => {
+    
+    AsyncStorage.setItem("user", JSON.stringify({email: this.state.email, password:this.state.password}) )
     console.log('signin from front handled...');
   
     fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
@@ -26,8 +45,10 @@ class Signin extends React.Component {
         data.isUserExist
           ? (
               console.log("ok"),
+           
               this.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
-              this.props.navigation.navigate('MonCompte')
+              this.props.navigation.navigate('MyAccount')
+
             )
           : this.setState({errorMessage: 'Wrong credentials, try again...'})
     }).catch(err => {

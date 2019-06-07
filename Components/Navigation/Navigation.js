@@ -1,7 +1,16 @@
 import React from 'react';
 
-import {createBottomTabNavigator, createAppContainer, createStackNavigator, createDrawerNavigator, DrawerItems, } from 'react-navigation';
-import {Platform, StyleSheet} from 'react-native'
+import {
+  createBottomTabNavigator,
+  createAppContainer,
+  createStackNavigator,
+  createDrawerNavigator,
+  DrawerItems,
+} from 'react-navigation';
+import {
+  Platform,
+  StyleSheet
+} from 'react-native'
 
 import Home from '../Screen/Home';
 import SearchScreen from '../Screen/SearchScreen';
@@ -20,13 +29,17 @@ import AddAlert from '../Screen/AddAlert';
 
 // Manque page inscription faite chez Ai et Produit faite aussi chez Ai en modele
 
-import { Ionicons } from '@expo/vector-icons';
-import {Icon } from 'native-base';
+import {
+  Ionicons
+} from '@expo/vector-icons';
+import {
+  Icon
+} from 'native-base';
 import MonCompte from '../Screen/MonCompte';
 import PromenadeScreen from '../Screen/PromenadeScreen';
 import Promenade from '../Promenade/Promenade';
 import MesPromenades from '../Screen/MesPromenades';
-import maptest from '../Screen/maptest'
+
 
 var iconAccount = {
   color: '#fd9644',
@@ -42,29 +55,29 @@ var iconAccount = {
 var StackNavigator = createStackNavigator({
 
 
-   Home: Home,
-   SearchScreen: SearchScreen,
-   ListScreen: ListScreen,
-   AddPromenade: AddPromenade,
+    Home: Home,
+    SearchScreen: SearchScreen,
+    ListScreen: ListScreen,
+    AddPromenade: AddPromenade,
+    PromenadeScreen: PromenadeScreen,
+    Signin: Signin,
+    MyAccount: MyAccount,
+    Account: Account,
+    NextPromenade: NextPromenade,
+    OldPromenade: OldPromenade,
+    MyAccountEdit: MyAccountEdit,
+    Alert: Alert,
+    AddAlert: AddAlert,
+    MonCompte: MonCompte,
+    MesPromenades: MesPromenades,
+    Signin: Signin,
+    CameraScreen: CameraScreen,
 
-   Signin: Signin,
-   MyAccount : MyAccount,
-   Account: Account,
-   NextPromenade: NextPromenade,
-   OldPromenade: OldPromenade,
-   MyAccountEdit: MyAccountEdit,
-   Alert: Alert,
-   AddAlert: AddAlert,
-
-
-   Signin: Signin,
-   CameraScreen: CameraScreen,
-
-}
+  }
 
 );
 
 
 
 
- export default Navigation = createAppContainer(StackNavigator);
+export default Navigation = createAppContainer(StackNavigator);

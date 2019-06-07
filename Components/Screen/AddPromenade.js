@@ -3,6 +3,7 @@ import {StyleSheet,View} from 'react-native';
 import { Form,DatePicker,Picker,Container, Item,Input,Header, Title, Content, Footer, FooterTab, Button, Left, Right, Body, Icon, Text, Thumbnail } from 'native-base';
 import {connect} from 'react-redux';
 import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { Location, Permissions } from 'expo';
 
 
 class AddPromenade extends Component {
@@ -18,7 +19,7 @@ class AddPromenade extends Component {
   };
     this.setDate = this.setDate.bind(this);
     duree: undefined
-
+    this._getLocationAsync=this._getLocationAsync.bind(this)
     this.AddaPromenade=this.AddaPromenade.bind(this);
     this.setAdress=this.setAdress.bind(this)
   }
@@ -42,7 +43,11 @@ class AddPromenade extends Component {
       description:this.state.description,
       warning:this.state.warning,
       lat:this.state.lat,
-      lng:this.state.lng
+      lng:this.state.lng,
+      currentlatitude:'',
+      currentlongitude: ''
+
+
     });
 
     // Since we are going to fetch with the ES5 syntax, we need to store this (an EST5 function has got its own this)
@@ -61,14 +66,27 @@ class AddPromenade extends Component {
     }).catch(function(err){
       console.log(err)
     })
-
-
-
   }
 
-
-
-
+  componentWillMount() {
+    this._getLocationAsync();
+  }
+  _getLocationAsync = async () => {
+      var { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+        this.setState({
+          errorMessage: 'Permission to access location was denied',
+        });
+      }
+  
+     Location.watchPositionAsync({distanceInterval: 5},
+      (location) => {this.setState({
+        currentlatitude: location.coords.latitude,
+        currentlongitude: location.coords.longitude
+      });
+      }
+    );
+  }
 
   dureeChange(value: string) {
     this.setState({
@@ -86,6 +104,8 @@ class AddPromenade extends Component {
   }
 
   render() {
+    const geoloca = { description: 'Ma location', geometry: { location: { lat: this.state.currentlatitude, lng:this.state.currentlongitude } }};
+
     return (
       <Container >
 
@@ -109,7 +129,7 @@ class AddPromenade extends Component {
           renderDescription={row => row.description} // custom description render
           onPress={(data, details = null) => {this.setAdress(data,details)
             console.log('DATA____-----',data);
-            console.log('DETAILS------',details.geometry.location);
+            console.log('DETAILS------',details);
           }}
           getDefaultValue={() => {
             return ''; // text input default value
@@ -128,8 +148,9 @@ class AddPromenade extends Component {
               color: '#1faadb',
             },
           }}
-          currentLocation={true} // Will add a 'Current location' button at the top of the predefined places list
+          currentLocation={false} // Will add a 'Current location' button at the top of the predefined places list
           currentLocationLabel="Current location"
+          predefinedPlaces={[geoloca]}
           nearbyPlacesAPI="GooglePlacesSearch" // Which API to use: GoogleReverseGeocoding or GooglePlacesSearch
           GoogleReverseGeocodingQuery={{
             // available options for GoogleReverseGeocoding API : https://developers.google.com/maps/documentation/geocoding/intro

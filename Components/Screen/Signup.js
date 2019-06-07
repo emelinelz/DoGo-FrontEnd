@@ -96,7 +96,7 @@ constructor(){
     }).then(function(data){
       console.log(data);
       ctx.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token);
-      ctx.props.navigation.navigate('MonCompte');
+      ctx.props.navigation.navigate('MyAccount');
     }).catch(function(err){
       console.log(err)
     })

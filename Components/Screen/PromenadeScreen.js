@@ -137,7 +137,7 @@ class PromenadeScreen extends React.Component{
                <Text><Icon style={{color:'blue',fontSize:15}} name="pin" /> {this.state.promenadeSelected.adress}</Text>
                <Text><Icon style={{color:'blue',fontSize:15}} name="warning" /> {this.state.promenadeSelected.warning}</Text>
              </View>
-     
+             
          </View>
 
         
@@ -145,6 +145,7 @@ class PromenadeScreen extends React.Component{
         
         <CardItem bordered>
               <Body>
+              <Text>Durée:{this.state.promenadeSelected.duree}</Text>
               <Text>
             {this.state.promenadeSelected.description}
             </Text>
@@ -231,7 +232,7 @@ class PromenadeScreen extends React.Component{
 
 <Footer>
       <FooterTab>
-      <Button transparent primary onPress={ () => this.props.navigation.navigate('MonCompte')}>
+      <Button transparent primary onPress={ () => this.props.navigation.navigate('MyAccount')}>
                   <Icon name='menu'/>
                   <Text>Mon compte</Text>
                 </Button>

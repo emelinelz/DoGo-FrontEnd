@@ -46,7 +46,7 @@ class Promenade extends React.Component{
                     <Text><Icon style={{color:'blue',fontSize:15}} name="pin" /> {this.props.adress}</Text>
                     <Text><Icon style={{color:'blue',fontSize:15}} name="warning" /> {this.props.warning}</Text>
                   </View>
-          
+                 
               </View>
 
              
@@ -87,11 +87,11 @@ const styles = StyleSheet.create({
    paddingTop:5,
  },
  mypromenade:{
-   backgroundColor:'#b8e994',
+   backgroundColor:'#FFFFFF',
    flex:0
  },
  promenade:{
-  backgroundColor:'#fad390',
+  backgroundColor:'#FFFFFF',
    flex:0
  },
  ratingText:{

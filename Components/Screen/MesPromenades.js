@@ -64,7 +64,7 @@ class MesPromenades extends React.Component{
                             <Icon name='add'/>
                             <Text>Add a promenade</Text>
                           </Button>
-                          <Button transparent primary onPress={ () => this.props.navigation.navigate('maptest')}>
+                          <Button transparent primary onPress={ () => this.props.navigation.navigate('AddPromenade')}>
                             <Icon name='alarm'/>
                             <Text>Créer une alerte</Text>
                           </Button>
