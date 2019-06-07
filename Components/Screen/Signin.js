@@ -37,10 +37,10 @@ class Signin extends React.Component {
 
   handleSumbit = () => {
     
-    AsyncStorage.setItem("user", JSON.stringify({email: this.state.email, password:this.state.password}) )
-    console.log('signin from front handled...');
-    console.log("this.state.email",this.state.email);
-    console.log("this.state.password",this.state.password);
+    // AsyncStorage.setItem("user", JSON.stringify({email: this.state.email, password:this.state.password}) )
+    // console.log('signin from front handled...');
+    // console.log("this.state.email",this.state.email);
+    // console.log("this.state.password",this.state.password);
     fetch(`${url}/signin?email=${this.state.email}&password=${this.state.password}`)
     .then((res, err)  => res.json() // only one element to return so no need to add {} and no need to use the key word return
     ).then(data => {
@@ -50,7 +50,7 @@ class Signin extends React.Component {
               console.log("ok"),
            
               this.props.handleUserValid(data.user._id,data.user.username,data.user.email,data.user.dog1,data.user.dog1gender,data.user.avatar,data.user.token),
-              this.props.navigation.navigate('MyAccount')
+              this.props.navigation.navigate('ListScreen')
 
             )
           : this.setState({errorMessage: 'Wrong credentials, try again...'})

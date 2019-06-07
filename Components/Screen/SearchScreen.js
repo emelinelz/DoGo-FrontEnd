@@ -158,8 +158,7 @@ _getLocationAsync = async () => {
                   </Button>
         </FooterTab>
 
-                  </Button>
-        </FooterTab>
+      
 
           </Content>
 

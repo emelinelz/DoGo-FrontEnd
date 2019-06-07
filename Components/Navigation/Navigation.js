@@ -110,10 +110,11 @@ var StackNavigator = createStackNavigator({
    Signin: Signin,
    Account: Account,
    MyAccountEdit: MyAccountEdit,
+ 
    AddAlert: AddAlert,
    Signup: Signup,
    CameraScreen: CameraScreen,
-
+    PromenadeScreen:PromenadeScreen,
    // J'inclus mon MainNavigator à mon StackNavigator
    MainNavigator: MainNavigator
  },
@@ -121,7 +122,7 @@ var StackNavigator = createStackNavigator({
  {
    defaultNavigationOptions:  ({navigation}) => ({
      headerRight: (
-       <Ionicons onPress={() => this.props.navigation.navigate('Mon compte')} name='ios-person' size={25} color='#fd9644' style={{marginRight: 20}}/>
+       <Ionicons onPress={() => this.props.navigation.navigate('MyAccount')} name='ios-person' size={25} color='#fd9644' style={{marginRight: 20}}/>
      )
    }),
  });
