@@ -14,7 +14,7 @@ export default class Alert extends React.Component {
 
     return (
 <Container>
-      <ImageBackground style={{flex:1}} source={require("../../assets/Images/backgroundpaws.jpeg")}>
+      <ImageBackground style={{flex:1, opacity: 0.2}} source={require("../../assets/Images/backgroundpaws.jpeg")}>
 
 
 

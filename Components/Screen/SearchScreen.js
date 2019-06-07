@@ -18,7 +18,7 @@ constructor(){
        duree:1,
        puppyButton:false,
        onlygirlsButton:false,
-       time: " ",
+       time: null,
        chosenDate: new Date()},
        this.setDate = this.setDate.bind(this);
 
@@ -99,13 +99,15 @@ _getLocationAsync = async () => {
       <Content>
 
         <View style={{flexDirection: 'column', border:10,marginLeft:30, marginTop:30,backgroundColor:'white', color:'black', justifyContent:'center',aligntext:'center', verticalAlign:'bottom'}}>
+
+              <Text> Durée :</Text>
+
               <TouchableOpacity
                 onPress={() => this.TimePicker.open()}
                 >
-                <Text>Duree:  </Text>
-
+                <Text> {this.state.time == null ? 'Choisir la durée': this.state.time }</Text>
               </TouchableOpacity>
-              <Text>{this.state.time}</Text>
+
               <TimePicker
                 ref={ref => {
                   this.TimePicker = ref;
@@ -124,8 +126,8 @@ _getLocationAsync = async () => {
             mode="date"
             placeholder="Date"
             format="DD/MM/YYYY"
-            minDate="2016/05/01"
-            maxDate="2016/06/01"
+            minDate=" / / "
+            maxDate=" / / "
             confirmBtnText="Confirmer"
             cancelBtnText="Annuler"
             showIcon={false}
@@ -152,6 +154,9 @@ _getLocationAsync = async () => {
         <FooterTab style={{padding:20,marginLeft:10,marginRight:30}} >
         <Button primary onPress={ () => this.props.navigation.navigate('ListScreen')}>
          <Text>Valider</Text>
+
+                  </Button>
+        </FooterTab>
 
                   </Button>
         </FooterTab>

@@ -2,7 +2,8 @@ import React from 'react';
 import {
  View,
  ImageBackground,
- StyleSheet
+ StyleSheet,
+ Image
 } from 'react-native';
 import { connect } from 'react-redux';
 
@@ -53,7 +54,7 @@ class Home extends React.Component {
 
   async componentWillMount() {
         await Font.loadAsync({
-            'Handlee-Regular': require('../../assets/Handlee-Regular.ttf'),
+            'Handlee-Regular': require('../../assets/Handlee-Regular.ttf')
         });
 
     this.setState({ fontLoaded: true });
@@ -71,16 +72,23 @@ onClick=()=>{
   // Traitement concernant le Header de la navigation : il masque le header
     static navigationOptions = {
     headerTitle: "DoGoHome",
-
+    headerRight: (
+      <Ionicons onPress={() => this.props.navigation.navigate('Mon compte')} name='ios-person' size={25} color='#fd9644' style={{marginRight: 20}}/>
+    ),
+    headerTitle: (
+      <Image source={require("../../assets/Images/dogo.png" )}  style={{ width: 84, height: 33 }}/>
+  )
   };
+
  render() {
   //  console.log("fontLoaded",this.state.fontLoaded);
    return (
 
-     <ImageBackground style={{flex:1}} source={require("../../assets/Images/chiens.jpeg")}>
+     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/chiens7.jpeg")}>
 
 
       <View style={{flex:1, alignItems:'center', }}>
+
 
       {this.state.fontLoaded ? (
                                 <Text style={{ fontFamily: 'Handlee-Regular', fontSize: 25, textAlign: 'left', color:"#FFF", fontWeight: 'bold', marginTop: 50 }}>
@@ -119,7 +127,7 @@ onClick=()=>{
 <Text >Signin</Text>
 </Button>
 
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('MyAccount')}>
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Mon compte')}>
 <Text >MyAccount</Text>
 </Button>
 
@@ -131,22 +139,21 @@ onClick=()=>{
 <Text >Account</Text>
 </Button>
 
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('NextPromenade')}>
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('À venir')}>
 <Text >NextPromenade</Text>
 </Button>
 
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('OldPromenade')}>
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Historique')}>
 <Text >OldPromenade</Text>
 </Button>
 
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Alert')}>
+<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Alertes')}>
 <Text >Alert</Text>
 </Button>
 
 <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('AddAlert')}>
 <Text >AddAlert</Text>
 </Button>
-
 
 
 
@@ -165,14 +172,6 @@ onClick=()=>{
 
 </View>
 
-
-
-
-      <Body style={{flexDirection: "row", justifyContent: "stretch", position: 'absolute', bottom:3}}>
-
-
-
-      </Body>
 
 
      </ImageBackground>

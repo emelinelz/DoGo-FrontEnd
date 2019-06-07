@@ -24,7 +24,7 @@ constructor(){
     avatar:null,
     permision: null,
     image:null
-    
+
   }
 }
   _pickImage = async () => {
@@ -48,9 +48,9 @@ constructor(){
         type: 'image/jpeg',
         name: 'user_avatar.jpg',
       });
-      
+
       const ctx = this;
-      
+
       await fetch(`${url}/upload`, {
         method: 'post',
         body: data
@@ -58,7 +58,7 @@ constructor(){
         return res.json()
       }).then(function(data){
         ctx.setState({avatar:data})
-       
+
       }).catch(function(err){
         console.log(err)
       })
@@ -100,11 +100,11 @@ constructor(){
     }).catch(function(err){
       console.log(err)
     })
-    
+
 
 
   }
-  
+
 
 
   render() {
@@ -133,11 +133,11 @@ constructor(){
             <Picker.Item label="Garson" value="male" />
             <Picker.Item label="Fille" value="female" />
           </Picker>
-          
-         
-        
+
+
+
         </View>
-        
+
 
       </View>
 
@@ -146,7 +146,7 @@ constructor(){
 
 
 
-      
+
     {/* </TouchableWithoutFeedback> */}
     <View style={{ alignItems: 'center', justifyContent: 'center' }}>
         <Button
@@ -173,7 +173,7 @@ color="#3897f1"
 
 
 
-  
+
     )
   }
 }
@@ -246,6 +246,3 @@ export default connect(
     null,
     mapDispatchToProps
 )(Signup);
-
-
-

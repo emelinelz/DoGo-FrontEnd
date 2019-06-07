@@ -79,7 +79,7 @@ class ListScreen extends React.Component {
 
     return (
       <View style={{flex:1}} >
-        { this.state.dataLoad ? 
+        { this.state.dataLoad ?
              (
        <ScrollView style={{flex: 1, marginHorizontal:20}}
        refreshControl={  <RefreshControl
@@ -103,7 +103,7 @@ class ListScreen extends React.Component {
             <Spinner color='blue' />
           </Content>)
           }
-          
+
       <Footer>
       <FooterTab>
       <Button transparent primary onPress={this.onClick}>

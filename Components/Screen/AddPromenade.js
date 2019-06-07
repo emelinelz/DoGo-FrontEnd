@@ -98,7 +98,6 @@ class AddPromenade extends Component {
       warning:value
     })
   }
-
   setDate(newDate) {
     this.setState({ chosenDate: newDate });
   }
@@ -189,16 +188,13 @@ class AddPromenade extends Component {
             disabled={false}
             />
           </Item>
-         
              {/* <Text>
               Date: {this.state.chosenDate.toString().substr(4, 12)}
             </Text> */}
-
-
             <Text style={styles.title}>
               Durée approximative:
             </Text>
-          
+
             <Item picker>
               <Picker
                 mode="dropdown"
@@ -215,13 +211,13 @@ class AddPromenade extends Component {
                 <Picker.Item label=">= 2h" value=">= 2h" />
               </Picker>
             </Item>
-        
-            
+
+
             <Text style={styles.title}>
               Description:
             </Text>
             <Item>
-            
+
             <Input onChangeText={(e) => this.setState({description: e})} placeholder="blabla blabla" />
             </Item>
             <Text style={styles.title}>
@@ -240,15 +236,15 @@ class AddPromenade extends Component {
             >
               <Picker.Item label="ladies only" value="ladies only" />
               <Picker.Item label="puppy" value="puppy" />
-              
+
             </Picker>
           </Form>
-          
 
-            
+
+
         </Content>
 
-       
+
 
         <Footer>
           <FooterTab>
@@ -279,7 +275,7 @@ const styles = StyleSheet.create({
     color: 'white',
     width:200
   },
-  
+
 });
 
 function mapStateToProps(state) {
