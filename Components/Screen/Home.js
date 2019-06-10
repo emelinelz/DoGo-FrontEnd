@@ -66,7 +66,7 @@ onClick=()=>{
   }else{
     this.props.navigation.navigate('Signin')
   }
-  
+
 
 }
   // Traitement concernant le Header de la navigation : il masque le header
@@ -84,7 +84,7 @@ onClick=()=>{
   //  console.log("fontLoaded",this.state.fontLoaded);
    return (
 
-     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/chiens7.jpeg")}>
+     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/home5.jpg")}>
 
 
       <View style={{flex:1, alignItems:'center', }}>
@@ -123,50 +123,51 @@ onClick=()=>{
 
 <View >
 
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Signin')}>
-<Text >Signin</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Mon compte')}>
-<Text >MyAccount</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('MyAccountEdit')}>
-<Text >MyAccountEdit</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Account')}>
-<Text >Account</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('À venir')}>
-<Text >NextPromenade</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Historique')}>
-<Text >OldPromenade</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Alertes')}>
-<Text >Alert</Text>
-</Button>
-
-<Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('AddAlert')}>
-<Text >AddAlert</Text>
-</Button>
-
-
-
-
+{
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Signin')}>
+// <Text >Signin</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Mon compte')}>
+// <Text >MyAccount</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('MyAccountEdit')}>
+// <Text >MyAccountEdit</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Account')}>
+// <Text >Account</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('À venir')}>
+// <Text >NextPromenade</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Historique')}>
+// <Text >OldPromenade</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('Alertes')}>
+// <Text >Alert</Text>
+// </Button>
+//
+// <Button danger style={{marginHorizontal:85, position: 'center'}} onPress={() => this.props.navigation.navigate('AddAlert')}>
+// <Text >AddAlert</Text>
+// </Button>
+}
 
 
 
-<Button success style={{marginHorizontal:85, marginBottom:10, position: 'center'}} onPress={() => this.props.navigation.navigate('SearchScreen')}>
+
+
+
+<Button info style={{marginHorizontal:85, marginBottom:10, position: 'center'}} onPress={() => this.props.navigation.navigate('SearchScreen')}>
 <Text >Trouver une promenade</Text>
 
 </Button>
 
-<Button bordered success style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={this.onClick}>
+<Button info style={{marginHorizontal:80, marginBottom:20, position: 'center'}} onPress={this.onClick}>
 <Text >Proposer une promenade</Text>
 </Button>
 
