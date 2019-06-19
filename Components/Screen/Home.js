@@ -84,7 +84,7 @@ onClick=()=>{
   //  console.log("fontLoaded",this.state.fontLoaded);
    return (
 
-     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/home5.jpg")}>
+     <ImageBackground style={{height: "100%"}} source={require("../../assets/Images/home1.jpg")}>
 
 
       <View style={{flex:1, alignItems:'center', }}>
